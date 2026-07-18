@@ -19,7 +19,7 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23231c12'/%3E%3Ccircle cx='16' cy='13' r='6' fill='%23e8b84b'/%3E%3Cpath d='M16 19c-5 0-8 5-8 9h16c0-4-3-9-8-9Z' fill='%23e8b84b'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gothic+A1:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <!-- Enables reveal animations only when JS runs; keeps content visible for no-JS / crawlers -->
   <script>document.documentElement.classList.add("reveal-ready");</script>
@@ -223,6 +223,11 @@
           <div class="booking__vendors" aria-label="예매처">
             <a class="vendor" href="https://nol.yanolja.com/ticket/products/26009214" data-editable="vendor-nol" target="_blank" rel="noopener noreferrer">NOL 티켓 <span aria-hidden="true">↗</span></a>
             <a class="vendor" href="http://ticket.yes24.com/Pages/Perf/Detail/Detail.aspx?IdPerf=59036" data-editable="vendor-yes24" target="_blank" rel="noopener noreferrer">예스24 티켓 <span aria-hidden="true">↗</span></a>
+            <!-- 전화예매: 실제 예매 콜센터 번호로 교체 (data-editable) -->
+            <a class="vendor vendor--phone" href="tel:15440000" data-editable="phone-booking">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.15.38 2.36.58 3.6.58a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.3a1 1 0 0 1 1 1c0 1.25.2 2.46.58 3.6a1 1 0 0 1-.25 1Z"/></svg>
+              전화예매 <b>1544-0000</b>
+            </a>
           </div>
         </div>
       </div>

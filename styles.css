@@ -48,6 +48,9 @@
   --step-4:  clamp(2.4rem, 1.9rem + 2.6vw, 4.2rem);
   --hero:    clamp(3.4rem, 2.2rem + 6vw, 6rem);
 
+  /* Type family — 전체 고딕체 통일 */
+  --font: "Gothic A1", "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", system-ui, -apple-system, sans-serif;
+
   /* Spacing rhythm */
   --space-section: clamp(4.5rem, 3rem + 7vw, 9rem);
   --gutter: clamp(1.25rem, 0.8rem + 2vw, 2.5rem);
@@ -78,7 +81,7 @@ html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 body {
-  font-family: "Gothic A1", system-ui, -apple-system, "Malgun Gothic", sans-serif;
+  font-family: var(--font);
   font-size: var(--step-0);
   line-height: 1.65;
   color: var(--ink-soft);
@@ -98,7 +101,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 }
 
 h1, h2, h3 {
-  font-family: "Gowun Batang", "Gothic A1", serif;
+  font-family: var(--font);
   color: var(--ink);
   line-height: 1.12;
   font-weight: 700;
@@ -115,7 +118,7 @@ p { text-wrap: pretty; }
   padding-inline: var(--gutter);
 }
 .eyebrow {
-  font-family: "Gothic A1", sans-serif;
+  font-family: var(--font);
   font-size: var(--step--1);
   font-weight: 700;
   letter-spacing: 0.02em;
@@ -197,7 +200,7 @@ p { text-wrap: pretty; }
   padding-block: 0.6rem;
 }
 .nav__brand {
-  font-family: "Gowun Batang", serif;
+  font-family: var(--font);
   font-size: var(--step-1);
   font-weight: 700;
   color: var(--ink);
@@ -208,7 +211,7 @@ p { text-wrap: pretty; }
 }
 .nav__brand .dot { color: var(--wine); }
 .nav__brand small {
-  font-family: "Gothic A1", sans-serif;
+  font-family: var(--font);
   font-size: 0.6em;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -313,9 +316,11 @@ p { text-wrap: pretty; }
 .hero__title {
   font-size: var(--hero);
   margin-top: clamp(1.2rem, 0.5rem + 2vw, 2rem);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   line-height: 0.98;
+  font-weight: 800;
 }
+.hero__title .name { font-weight: 900; }
 .hero__title .name {
   display: block;
   font-size: 1.35em;
@@ -369,7 +374,7 @@ p { text-wrap: pretty; }
   text-align: center;
 }
 .countdown__num {
-  font-family: "Gowun Batang", serif;
+  font-family: var(--font);
   font-size: var(--step-3);
   font-weight: 700;
   color: var(--gold-bright);
@@ -410,7 +415,7 @@ p { text-wrap: pretty; }
 .intro__copy p { max-width: var(--measure); font-size: var(--step-1); line-height: 1.75; color: var(--ink-soft); }
 .intro__copy p + p { margin-top: 1.2rem; }
 .intro__copy .lede {
-  font-family: "Gowun Batang", serif;
+  font-family: var(--font);
   font-size: var(--step-2);
   color: var(--ink);
   line-height: 1.5;
@@ -492,10 +497,10 @@ p { text-wrap: pretty; }
   display: flex; flex-direction: column; justify-content: space-between; gap: 1.4rem;
   min-height: 100%;
 }
-.poster__name { font-family: "Gowun Batang", serif; font-size: var(--step-4); color: var(--ink); letter-spacing: 0.06em; text-align: center; text-shadow: 0 0 30px oklch(0.815 0.135 86 / 0.3); }
-.poster__show { text-align: center; color: var(--gold); font-family: "Gowun Batang", serif; font-size: var(--step-1); margin-top: 0.3rem; }
+.poster__name { font-family: var(--font); font-size: var(--step-4); color: var(--ink); letter-spacing: 0.06em; text-align: center; text-shadow: 0 0 30px oklch(0.815 0.135 86 / 0.3); }
+.poster__show { text-align: center; color: var(--gold); font-family: var(--font); font-size: var(--step-1); margin-top: 0.3rem; }
 .poster__when { text-align: center; }
-.poster__when b { display:block; font-size: var(--step-2); color: var(--ink); font-family: "Gowun Batang", serif; }
+.poster__when b { display:block; font-size: var(--step-2); color: var(--ink); font-family: var(--font); }
 .poster__when span { color: var(--ink-muted); font-size: var(--step--1); letter-spacing: 0.1em; }
 .poster__seal {
   align-self: center;
@@ -526,7 +531,7 @@ p { text-wrap: pretty; }
   font-size: 0.7rem; font-weight: 800; letter-spacing: 0.06em;
   padding: 0.3em 0.8em; border-radius: var(--r-pill);
 }
-.tier__grade { font-family: "Gowun Batang", serif; font-size: var(--step-2); color: var(--gold-bright); }
+.tier__grade { font-family: var(--font); font-size: var(--step-2); color: var(--gold-bright); }
 .tier__price { font-size: var(--step-2); color: var(--ink); font-weight: 800; margin-top: 0.5rem; font-variant-numeric: tabular-nums; }
 .tier__price small { font-size: 0.55em; color: var(--ink-muted); font-weight: 600; margin-left: 0.2em; }
 .tier__desc { margin-top: 0.7rem; color: var(--ink-soft); font-size: var(--step--1); }
@@ -555,6 +560,14 @@ p { text-wrap: pretty; }
   transition: border-color var(--dur-1) var(--ease-out-quart), color var(--dur-1) var(--ease-out-quart), background var(--dur-1) var(--ease-out-quart);
 }
 .vendor:hover { border-color: var(--gold); color: var(--gold-bright); background: oklch(0.815 0.135 86 / 0.08); }
+.vendor--phone {
+  display: inline-flex; align-items: center; gap: 0.5em;
+  border-color: var(--gold-deep); color: var(--gold-bright);
+  background: oklch(0.815 0.135 86 / 0.06);
+}
+.vendor--phone svg { width: 1.05em; height: 1.05em; flex: none; }
+.vendor--phone b { font-weight: 800; font-variant-numeric: tabular-nums; letter-spacing: 0.02em; }
+.vendor--phone:hover { border-color: var(--gold); background: oklch(0.815 0.135 86 / 0.14); }
 
 /* ---------- Location ---------- */
 .location__grid { display: grid; gap: clamp(1.5rem, 3vw, 2.5rem); grid-template-columns: 1fr; }
@@ -577,7 +590,7 @@ p { text-wrap: pretty; }
   color: var(--gold); text-align: center;
 }
 .map__pin svg { width: 40px; height: 40px; filter: drop-shadow(0 6px 14px oklch(0.815 0.135 86 / 0.4)); }
-.map__pin b { color: var(--ink); font-size: var(--step-1); font-family: "Gowun Batang", serif; }
+.map__pin b { color: var(--ink); font-size: var(--step-1); font-family: var(--font); }
 .map__pin span { color: var(--ink-muted); font-size: var(--step--1); }
 .location__info { display: flex; flex-direction: column; gap: 1.4rem; }
 .location__block h3 { font-size: var(--step-1); margin-bottom: 0.5rem; color: var(--gold); }
@@ -628,7 +641,7 @@ p { text-wrap: pretty; }
   padding-top: 2rem; border-top: 1px solid var(--line);
   color: var(--ink-muted); font-size: var(--step--1);
 }
-.footer__brand { font-family: "Gowun Batang", serif; font-size: var(--step-1); color: var(--ink); letter-spacing: 0.06em; }
+.footer__brand { font-family: var(--font); font-size: var(--step-1); color: var(--ink); letter-spacing: 0.06em; }
 .footer__meta { display: grid; gap: 0.3rem; }
 .footer__social { display: flex; gap: 0.8rem; align-items: center; }
 .footer__social a {
@@ -651,7 +664,7 @@ p { text-wrap: pretty; }
   gap: 0.8rem; align-items: center; justify-content: space-between;
 }
 .mobilecta__info { display: grid; gap: 0.1rem; }
-.mobilecta__info b { color: var(--ink); font-size: var(--step-0); font-family: "Gowun Batang", serif; }
+.mobilecta__info b { color: var(--ink); font-size: var(--step-0); font-family: var(--font); }
 .mobilecta__info span { color: var(--ink-muted); font-size: 0.72rem; }
 .mobilecta .btn { flex: none; }
 @media (max-width: 760px) { .mobilecta { display: flex; } }

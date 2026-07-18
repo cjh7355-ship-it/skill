@@ -33,13 +33,14 @@ python3 -m http.server 8000
   var SHOW_DATE = new Date(2026, 7, 22, 19, 0, 0); // 2026-08-22 19:00
   ```
 - **예매처 링크**: `#tickets` 섹션과 상단/하단 CTA의 `href="#tickets"`는 페이지 내 이동입니다.
-  실제 예매 URL은 `data-editable="vendor-*"` 링크의 `href`에 넣으세요.
+  온라인 예매 URL은 `data-editable="vendor-*"` 링크의 `href`에 들어 있습니다(NOL·예스24 연결됨).
+- **전화예매 번호**: `data-editable="phone-booking"`의 `href="tel:..."`와 표시 번호(`1544-0000`)를 실제 콜센터 번호로 교체하세요.
 - **적우님 사진**: `#intro`의 무대 실루엣(`.stage`)과 `#details`의 포스터(`.poster`) 영역에
   실제 공연 사진을 `<img>`로 교체하면 됩니다. 현재는 저작권/사실 왜곡을 피해 크래프트된 SVG 실루엣으로 대체해 두었습니다.
 
 ## 디자인 메모
 
-- **폰트**: 제목 = Gowun Batang(감성 세리프), 본문 = Gothic A1(클린 산세리프) — Google Fonts에서 로드.
+- **폰트**: 전체 고딕체 통일 — Gothic A1(Google Fonts). `styles.css`의 `--font` 변수 한 곳만 바꾸면 전체 폰트가 변경됩니다.
 - **색**: 따뜻한 근-검정 배경 + 골드 액센트(무대 조명) + 딥 와인(적우=붉은 비) 소량. OKLCH 사용.
 - **접근성**: 본문 대비 ≥ 4.5:1, 키보드 포커스 표시, `prefers-reduced-motion` 시 애니메이션 정적 대체.
 - **모션**: 캔버스 골든 레인은 히어로가 화면 밖일 때 자동 정지(성능), reduced-motion 시 정지 프레임.
