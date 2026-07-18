@@ -1,0 +1,201 @@
+/* =============================================================
+   적우 「황금빛 밤」 — interactions
+   - Golden rain canvas (적우=붉은 비 모티프, 황금빛으로)
+   - D-day countdown
+   - Nav scroll state + reveal on scroll
+   All motion respects prefers-reduced-motion.
+   ============================================================= */
+(function () {
+  "use strict";
+
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- Concert datetime (EDIT HERE) ----------
+     실제 공연 일시로 교체하세요. (연, 월(0=1월), 일, 시, 분) */
+  var SHOW_DATE = new Date(2026, 7, 22, 19, 0, 0); // 2026-08-22 19:00
+
+  /* ================= Golden rain canvas ================= */
+  function initRain() {
+    var canvas = document.querySelector(".hero__canvas");
+    if (!canvas) return;
+    var ctx = canvas.getContext("2d");
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var w = 0, h = 0, drops = [];
+
+    function resize() {
+      var rect = canvas.getBoundingClientRect();
+      w = rect.width; h = rect.height;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      // Density scales with area, capped for perf.
+      var count = Math.min(120, Math.round((w * h) / 12000));
+      drops = [];
+      for (var i = 0; i < count; i++) drops.push(makeDrop(true));
+    }
+
+    function makeDrop(seed) {
+      return {
+        x: Math.random() * w,
+        y: seed ? Math.random() * h : -20,
+        len: 8 + Math.random() * 22,
+        vy: 60 + Math.random() * 140,     // px per second
+        drift: -8 + Math.random() * 16,
+        a: 0.12 + Math.random() * 0.5,
+        wide: Math.random() < 0.18        // occasional brighter streak
+      };
+    }
+
+    var last = performance.now();
+    function frame(now) {
+      var dt = Math.min((now - last) / 1000, 0.05);
+      last = now;
+      ctx.clearRect(0, 0, w, h);
+      for (var i = 0; i < drops.length; i++) {
+        var d = drops[i];
+        d.y += d.vy * dt;
+        d.x += d.drift * dt;
+        if (d.y - d.len > h) { drops[i] = makeDrop(false); continue; }
+        var grad = ctx.createLinearGradient(d.x, d.y - d.len, d.x, d.y);
+        grad.addColorStop(0, "oklch(0.88 0.13 90 / 0)");
+        grad.addColorStop(1, "oklch(0.88 0.13 90 / " + d.a.toFixed(2) + ")");
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = d.wide ? 1.6 : 0.8;
+        ctx.beginPath();
+        ctx.moveTo(d.x, d.y - d.len);
+        ctx.lineTo(d.x + d.drift * 0.06, d.y);
+        ctx.stroke();
+      }
+      raf = requestAnimationFrame(frame);
+    }
+
+    var raf;
+    resize();
+    if (reduceMotion) {
+      // Static single frame: a few faint streaks, no animation loop.
+      for (var i = 0; i < drops.length; i++) {
+        var d = drops[i];
+        ctx.strokeStyle = "oklch(0.88 0.13 90 / " + (d.a * 0.6).toFixed(2) + ")";
+        ctx.lineWidth = 0.8;
+        ctx.beginPath();
+        ctx.moveTo(d.x, d.y - d.len);
+        ctx.lineTo(d.x, d.y);
+        ctx.stroke();
+      }
+    } else {
+      last = performance.now();
+      raf = requestAnimationFrame(frame);
+    }
+
+    var rt;
+    window.addEventListener("resize", function () {
+      clearTimeout(rt);
+      rt = setTimeout(resize, 200);
+    });
+
+    // Pause when hero is off-screen to save cycles.
+    if (!reduceMotion && "IntersectionObserver" in window) {
+      var hero = document.querySelector(".hero");
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { if (!raf) { last = performance.now(); raf = requestAnimationFrame(frame); } }
+          else if (raf) { cancelAnimationFrame(raf); raf = null; }
+        });
+      }, { threshold: 0.01 }).observe(hero);
+    }
+  }
+
+  /* ================= Countdown ================= */
+  function initCountdown() {
+    var root = document.getElementById("countdown");
+    if (!root) return;
+    var els = {
+      days: root.querySelector('[data-cd="days"]'),
+      hours: root.querySelector('[data-cd="hours"]'),
+      mins: root.querySelector('[data-cd="mins"]'),
+      secs: root.querySelector('[data-cd="secs"]')
+    };
+    function pad(n) { return (n < 10 ? "0" : "") + n; }
+    function tick() {
+      var diff = SHOW_DATE.getTime() - Date.now();
+      if (diff <= 0) {
+        els.days.textContent = "00"; els.hours.textContent = "00";
+        els.mins.textContent = "00"; els.secs.textContent = "00";
+        var label = document.querySelector(".countdown__label");
+        if (label) label.textContent = "오늘, 그 밤";
+        return false;
+      }
+      var s = Math.floor(diff / 1000);
+      els.days.textContent = Math.floor(s / 86400);
+      els.hours.textContent = pad(Math.floor((s % 86400) / 3600));
+      els.mins.textContent = pad(Math.floor((s % 3600) / 60));
+      els.secs.textContent = pad(s % 60);
+      return true;
+    }
+    if (tick()) setInterval(tick, 1000);
+  }
+
+  /* ================= Nav scroll state ================= */
+  function initNav() {
+    var nav = document.getElementById("nav");
+    if (!nav) return;
+    function onScroll() { nav.classList.toggle("is-scrolled", window.scrollY > 40); }
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+  }
+
+  /* ================= Reveal on scroll ================= */
+  function initReveal() {
+    var items = document.querySelectorAll("[data-reveal], [data-reveal-stagger]");
+    if (!items.length) return;
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      items.forEach(function (el) { el.classList.add("is-in"); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        reveal(e.target);
+        io.unobserve(e.target);
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+    items.forEach(function (el) { io.observe(el); });
+
+    function reveal(el) {
+      if (el.hasAttribute("data-reveal-stagger")) {
+        Array.prototype.forEach.call(el.children, function (child, i) {
+          child.style.transitionDelay = (i * 90) + "ms";
+        });
+      }
+      el.classList.add("is-in");
+    }
+
+    // Failsafe: nothing stays hidden if the observer never fires for an item
+    // (e.g. prerender snapshots, unusual scroll containers).
+    setTimeout(function () {
+      items.forEach(function (el) {
+        if (!el.classList.contains("is-in")) { reveal(el); io.unobserve(el); }
+      });
+    }, 2600);
+  }
+
+  /* ================= Hero entrance ================= */
+  function initHero() {
+    var hero = document.querySelector(".hero");
+    if (!hero) return;
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () { hero.classList.add("hero-ready"); });
+    });
+  }
+
+  /* ================= Boot ================= */
+  function boot() {
+    initHero();
+    initNav();
+    initReveal();
+    initCountdown();
+    initRain();
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot);
+  } else { boot(); }
+})();
