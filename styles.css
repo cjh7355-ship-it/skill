@@ -782,3 +782,8 @@ p { text-wrap: pretty; }
 @media (prefers-reduced-motion: reduce) {
   .modal, .modal__dialog { transition: none; }
 }
+
+/* ---------- Seat map ---------- */
+.seatmap { max-width: 780px; margin: 0 auto clamp(1.5rem, 3vw, 2.4rem); border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; background: var(--bg-deep); }
+.seatmap img { width: 100%; height: auto; display: block; }
+.seatmap figcaption { padding: 0.75rem 1rem; font-size: var(--step--1); color: var(--ink-muted); text-align: center; border-top: 1px solid var(--line); }
