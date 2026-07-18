@@ -28,75 +28,27 @@
 
   <!-- ============ NAV ============ -->
   <nav class="nav" id="nav" aria-label="주요">
-    <a class="nav__brand" href="#top">적우<span class="dot">·</span><small>JEOK WOO</small></a>
     <div class="nav__menu-links">
       <div class="nav__links">
-        <a href="#intro">공연 소개</a>
         <a href="#details">공연 정보</a>
         <a href="#tickets">티켓</a>
         <a href="#location">오시는 길</a>
         <a href="#notice">관람 안내</a>
       </div>
     </div>
-    <a class="btn nav__cta" href="#tickets">예매하기</a>
+    <button class="btn nav__cta" type="button" data-book-open>예매하기</button>
   </nav>
 
-  <!-- ============ HERO ============ -->
-  <header class="hero" id="top">
+  <!-- ============ HERO (공식 포스터) ============ -->
+  <header class="hero hero--poster" id="top">
     <canvas class="hero__canvas" aria-hidden="true"></canvas>
     <div class="hero__glow" aria-hidden="true"></div>
-    <svg class="hero__beams" viewBox="0 0 1100 900" preserveAspectRatio="xMidYMin slice" aria-hidden="true">
-      <defs>
-        <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="oklch(0.62 0.19 26)" stop-opacity="0.55" />
-          <stop offset="1" stop-color="oklch(0.62 0.19 26)" stop-opacity="0" />
-        </linearGradient>
-      </defs>
-      <polygon points="540,-40 470,900 610,900" fill="url(#beam)" />
-      <polygon points="540,-40 250,900 430,900" fill="url(#beam)" opacity="0.6" />
-      <polygon points="540,-40 660,900 850,900" fill="url(#beam)" opacity="0.6" />
-      <polygon points="540,-40 60,900 260,900" fill="url(#beam)" opacity="0.35" />
-      <polygon points="540,-40 840,900 1040,900" fill="url(#beam)" opacity="0.35" />
-    </svg>
     <div class="hero__vignette" aria-hidden="true"></div>
 
     <div class="container hero__inner">
-      <p class="hero__kicker">
-        <span>단독 콘서트</span><span class="sep"></span><span class="muted">DAEGU 2026</span>
-      </p>
-
-      <h1 class="hero__title">
-        <span class="name">적우</span>
-        <span class="show" data-editable="show-title">슈퍼디바</span>
-      </h1>
-
-      <p class="hero__sub">불이 꺼지고 첫 음이 울리면,<br />그 밤은 온전히 목소리의 것이 됩니다.</p>
-
-      <div class="hero__meta">
-        <span data-editable="date">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-          2026. 08. 22 (토) 오후 4시
-        </span>
-        <span data-editable="venue">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
-          영남대 천마아트센터 그랜드홀
-        </span>
-      </div>
-
-      <div class="hero__cta">
-        <a class="btn" href="#tickets">예매하기 <span class="btn__arrow" aria-hidden="true">→</span></a>
-        <a class="btn btn--ghost" href="#details">공연 정보 보기</a>
-      </div>
-
-      <div class="countdown" aria-live="off">
-        <span class="countdown__label">공연까지</span>
-        <div class="countdown__grid" id="countdown" role="timer" aria-label="공연까지 남은 시간">
-          <div class="countdown__cell"><span class="countdown__num" data-cd="days">--</span><span class="countdown__unit">일</span></div>
-          <div class="countdown__cell"><span class="countdown__num" data-cd="hours">--</span><span class="countdown__unit">시간</span></div>
-          <div class="countdown__cell"><span class="countdown__num" data-cd="mins">--</span><span class="countdown__unit">분</span></div>
-          <div class="countdown__cell"><span class="countdown__num" data-cd="secs">--</span><span class="countdown__unit">초</span></div>
-        </div>
-      </div>
+      <figure class="hero__poster" data-reveal>
+        <img src="assets/poster-jeokwoo-daegu.jpg" width="467" height="651" alt="슈퍼디바 적우 콘서트 - 대구 공식 포스터. 2026년 8월 22일 토요일 오후 4시, 영남대학교 천마아트센터 그랜드홀." />
+      </figure>
     </div>
 
     <div class="hero__scroll" aria-hidden="true">
@@ -106,23 +58,6 @@
   </header>
 
   <main>
-    <!-- ============ INTRO ============ -->
-    <section class="section intro" id="intro">
-      <div class="container intro__grid">
-        <div class="intro__copy" data-reveal>
-          <p class="eyebrow">공연 소개</p>
-          <p class="lede">보고 싶었던 목소리가<br />다시 무대에 서는 <span class="drop">밤</span>.</p>
-          <p>2011년 MBC 「나는 가수다」로 대중에게 깊이 각인된 발라드 디바, 2025년 「TV조선 미스트롯4」로 15년 만에 무대에 돌아온 <b>적우</b>. 팬들이 '슈퍼 디바'라 부르던 그 목소리가, 이번엔 대구에서 관객과 가장 가까운 거리에 섭니다.</p>
-          <p>익숙한 발라드부터 오래 아껴온 곡까지, 오직 이 무대를 위해 새로 편곡한 순간들. 붉은 비가 스며들듯 번지는 저녁, 함께해 주세요.</p>
-        </div>
-
-        <!-- 공식 포스터 -->
-        <figure class="stage stage--poster" data-reveal>
-          <img class="stage__img" src="assets/poster-jeokwoo-daegu.jpg" width="467" height="651" alt="슈퍼디바 적우 콘서트 - 대구 공식 포스터. 2026년 8월 22일 토요일 오후 4시, 영남대학교 천마아트센터 그랜드홀." />
-        </figure>
-      </div>
-    </section>
-
     <!-- ============ DETAILS ============ -->
     <section class="section band" id="details">
       <div class="container">
@@ -139,7 +74,7 @@
             <div class="dl__row"><dt>장소</dt><dd data-editable="venue-full">영남대학교 천마아트센터 그랜드홀 <small>(경상북도 경산 · 대구 인접)</small></dd></div>
             <div class="dl__row"><dt>관람시간</dt><dd data-editable="runtime">약 120분</dd></div>
             <div class="dl__row"><dt>관람등급</dt><dd data-editable="rating">만 7세 이상 관람 가능</dd></div>
-            <div class="dl__row"><dt>주최 · 주관</dt><dd data-editable="host">(주)케이에이치제이미디어</dd></div>
+            <div class="dl__row"><dt>주최 · 주관</dt><dd data-editable="host">FX솔루션</dd></div>
           </dl>
         </div>
       </div>
@@ -154,39 +89,28 @@
           <p class="section__lead">좌석 등급별 가격입니다. 예매 오픈과 동시에 예매처에서 구매하실 수 있습니다.</p>
         </div>
 
-        <div class="tiers" data-reveal-stagger>
-          <div class="tier tier--best">
+        <div class="tiers tiers--rows" data-reveal-stagger>
+          <div class="tier tier--row tier--best">
             <span class="tier__badge">BEST</span>
             <div class="tier__grade">R석</div>
-            <div class="tier__price" data-editable="price-r">132,000<small>원</small></div>
             <p class="tier__desc">무대와 가장 가까운 중앙 시야의 인기 좌석.</p>
+            <div class="tier__price" data-editable="price-r">132,000<small>원</small></div>
           </div>
-          <div class="tier">
+          <div class="tier tier--row">
             <div class="tier__grade">S석</div>
-            <div class="tier__price" data-editable="price-s">125,000<small>원</small></div>
             <p class="tier__desc">무대 전체가 보이는 안정적인 시야.</p>
+            <div class="tier__price" data-editable="price-s">125,000<small>원</small></div>
           </div>
-          <div class="tier">
+          <div class="tier tier--row">
             <div class="tier__grade">A석</div>
-            <div class="tier__price" data-editable="price-a">121,000<small>원</small></div>
             <p class="tier__desc">합리적인 가격으로 만나는 무대.</p>
+            <div class="tier__price" data-editable="price-a">121,000<small>원</small></div>
           </div>
         </div>
 
-        <div class="booking" data-reveal>
-          <div class="booking__open">
-            <p style="font-size:var(--step-1);color:var(--ink)"><b>예매하기</b> · 아래 예매처에서 예매하실 수 있습니다</p>
-            <p style="margin-top:0.4rem" data-editable="open-date">예매 일정 및 좌석 잔여 현황은 각 예매처 페이지에서 확인해 주세요.</p>
-          </div>
-          <div class="booking__vendors" aria-label="예매처">
-            <a class="vendor" href="https://nol.yanolja.com/ticket/products/26009214" data-editable="vendor-nol" target="_blank" rel="noopener noreferrer">NOL 티켓 <span aria-hidden="true">↗</span></a>
-            <a class="vendor" href="http://ticket.yes24.com/Pages/Perf/Detail/Detail.aspx?IdPerf=59036" data-editable="vendor-yes24" target="_blank" rel="noopener noreferrer">예스24 티켓 <span aria-hidden="true">↗</span></a>
-            <!-- 전화예매: 실제 예매 콜센터 번호로 교체 (data-editable) -->
-            <a class="vendor vendor--phone" href="tel:15441555" data-editable="phone-booking">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.15.38 2.36.58 3.6.58a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.3a1 1 0 0 1 1 1c0 1.25.2 2.46.58 3.6a1 1 0 0 1-.25 1Z"/></svg>
-              전화예매 <b>1544-1555</b>
-            </a>
-          </div>
+        <div class="tickets__action" data-reveal>
+          <button class="btn" type="button" data-book-open>예매하기 <span class="btn__arrow" aria-hidden="true">→</span></button>
+          <p class="tickets__note">NOL 티켓 · 예스24 티켓 · 전화예매(1544-1555) 중 선택할 수 있습니다. 좌석 잔여 현황은 각 예매처에서 확인해 주세요.</p>
         </div>
       </div>
     </section>
@@ -200,13 +124,14 @@
         </div>
 
         <div class="location__grid">
-          <div class="map" data-reveal role="img" aria-label="공연장 위치 지도 (확정 후 삽입 예정)">
+          <a class="map map--naver" href="https://map.naver.com/p/search/영남대학교 천마아트센터 그랜드홀" target="_blank" rel="noopener noreferrer" data-reveal aria-label="네이버 지도에서 공연장 위치 보기">
             <div class="map__pin">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg>
               <b data-editable="venue-map">영남대학교 천마아트센터 그랜드홀</b>
               <span>경상북도 경산시 대학로 280 (대동)</span>
+              <span class="map__cta">네이버 지도에서 보기 <span aria-hidden="true">↗</span></span>
             </div>
-          </div>
+          </a>
 
           <div class="location__info">
             <div class="location__block" data-reveal>
@@ -266,17 +191,10 @@
   <!-- ============ FOOTER ============ -->
   <footer class="footer">
     <div class="container">
-      <div class="footer__cta" data-reveal>
-        <p class="eyebrow" style="justify-content:center">그 밤, 함께</p>
-        <h2>보고 싶었던 그 목소리를<br />놓치지 마세요</h2>
-        <p>슈퍼디바 적우 콘서트 - 대구 · 2026. 08. 22 (토) · 영남대 천마아트센터</p>
-        <a class="btn" href="#tickets">예매하기 <span class="btn__arrow" aria-hidden="true">→</span></a>
-      </div>
-
       <div class="footer__grid">
         <div class="footer__meta">
           <span class="footer__brand">슈퍼디바 적우 콘서트 · 대구</span>
-          <span data-editable="footer-host">주최 · 주관 (주)케이에이치제이미디어</span>
+          <span data-editable="footer-host">주최 · 주관 FX솔루션</span>
           <span data-editable="footer-contact">예매문의 1544-1555 (NOL 티켓)</span>
         </div>
         <div class="footer__social" aria-label="소셜 미디어">
@@ -284,7 +202,18 @@
           <a href="#" aria-label="유튜브" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="5" width="19" height="14" rx="4"/><path d="M10 9l5 3-5 3V9Z" fill="currentColor" stroke="none"/></svg></a>
         </div>
       </div>
-      <p class="footer__note">본 페이지는 공연 안내를 위한 비공식 랜딩페이지입니다. 예매·좌석 잔여 현황 등 실시간 정보는 예매처(NOL 티켓 · 예스24) 상세페이지 안내를 최종 기준으로 확인해 주세요. © 2026 슈퍼디바 적우 콘서트.</p>
+
+      <!-- 사업자 정보 (하우커뮤니케이션) — [ ] 표시는 실제 값으로 교체 -->
+      <div class="bizinfo" data-editable="bizinfo">
+        <span class="bizinfo__name">하우커뮤니케이션</span>
+        <span>대표 <em>[대표자명]</em></span>
+        <span>사업자등록번호 <em>[000-00-00000]</em></span>
+        <span>통신판매업신고 <em>[제0000-지역-0000호]</em></span>
+        <span>주소 <em>[사업장 주소]</em></span>
+        <span>고객문의 <em>[전화번호]</em> · <em>[이메일]</em></span>
+      </div>
+
+      <p class="footer__note">본 페이지는 공연 안내를 위한 랜딩페이지입니다. 예매·좌석 잔여 현황 등 실시간 정보는 예매처(NOL 티켓 · 예스24) 상세페이지 안내를 최종 기준으로 확인해 주세요. © 2026 하우커뮤니케이션.</p>
     </div>
   </footer>
 
@@ -294,7 +223,32 @@
       <b>슈퍼디바 적우 콘서트</b>
       <span data-editable="mobile-when">2026.08.22 (토) · 영남대 천마아트센터</span>
     </div>
-    <a class="btn" href="#tickets">예매하기</a>
+    <button class="btn" type="button" data-book-open>예매하기</button>
+  </div>
+
+  <!-- ============ 예매 모달 ============ -->
+  <div class="modal" id="bookModal" hidden>
+    <div class="modal__backdrop" data-book-close></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="bookTitle">
+      <button class="modal__close" type="button" data-book-close aria-label="닫기">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <p class="eyebrow">예매하기</p>
+      <h2 class="modal__title" id="bookTitle">예매처를 선택하세요</h2>
+      <p class="modal__sub">슈퍼디바 적우 콘서트 - 대구 · 2026.08.22 (토) 오후 4시</p>
+      <div class="modal__vendors">
+        <a class="vendor vendor--lg" href="https://nol.yanolja.com/ticket/products/26009214" target="_blank" rel="noopener noreferrer">
+          <span>NOL 티켓</span><span class="vendor__arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="vendor vendor--lg" href="http://ticket.yes24.com/Pages/Perf/Detail/Detail.aspx?IdPerf=59036" target="_blank" rel="noopener noreferrer">
+          <span>예스24 티켓</span><span class="vendor__arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="vendor vendor--lg vendor--phone" href="tel:15441555">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.15.38 2.36.58 3.6.58a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.3a1 1 0 0 1 1 1c0 1.25.2 2.46.58 3.6a1 1 0 0 1-.25 1Z"/></svg>
+          <span>전화예매 <b>1544-1555</b></span>
+        </a>
+      </div>
+    </div>
   </div>
 
   <script src="script.js"></script>

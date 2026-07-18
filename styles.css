@@ -707,3 +707,78 @@ p { text-wrap: pretty; }
   .footer__grid { flex-direction: column; }
   .dl__row { grid-template-columns: 1fr; gap: 0.2rem; }
 }
+
+/* =============================================================
+   개편: 포스터 히어로 · 좌석 행 · 네이버맵 · 사업자정보 · 예매 모달
+   ============================================================= */
+
+/* ---------- Poster hero ---------- */
+.hero--poster { padding-top: 6.5rem; padding-bottom: clamp(3rem, 2rem + 4vw, 5rem); }
+.hero__poster {
+  position: relative; z-index: var(--z-base);
+  height: min(78svh, 680px); width: fit-content; max-width: 92vw;
+  margin-inline: auto;
+  border-radius: var(--r-lg); overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: 0 40px 100px -40px oklch(0 0 0 / 0.9), 0 0 60px -20px oklch(0.64 0.19 26 / 0.35);
+}
+.hero__poster img { height: 100%; width: auto; display: block; }
+@media (max-width: 560px) { .hero__poster { height: auto; width: min(92vw, 460px); } }
+
+/* ---------- Tickets: one seat per row ---------- */
+.tiers--rows { grid-template-columns: 1fr; gap: 0.8rem; max-width: 780px; margin-inline: auto; }
+.tier--row {
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center;
+  gap: 0.4rem 1.4rem; padding: 1.15rem 1.6rem;
+}
+.tier--row .tier__grade { font-size: var(--step-1); min-width: 3.2em; }
+.tier--row .tier__desc { margin-top: 0; color: var(--ink-muted); }
+.tier--row .tier__price { margin-top: 0; font-size: var(--step-1); white-space: nowrap; }
+.tier--row .tier__badge { top: -0.6rem; }
+@media (max-width: 560px) {
+  .tier--row { grid-template-columns: 1fr auto; }
+  .tier--row .tier__desc { grid-column: 1 / -1; }
+}
+.tickets__action { margin-top: clamp(1.6rem, 3vw, 2.4rem); display: flex; flex-direction: column; align-items: center; gap: 0.9rem; text-align: center; }
+.tickets__note { color: var(--ink-muted); font-size: var(--step--1); max-width: 48ch; }
+
+/* ---------- Naver map card ---------- */
+.map--naver { cursor: pointer; transition: border-color var(--dur-1) var(--ease-out-quart), transform var(--dur-1) var(--ease-out-quint); }
+.map--naver:hover { border-color: var(--gold); transform: translateY(-2px); }
+.map__cta { margin-top: 0.7rem; display: inline-flex; align-items: center; gap: 0.35em; color: #05c757; font-weight: 800; font-size: var(--step--1); letter-spacing: 0.01em; }
+
+/* ---------- Business info (footer) ---------- */
+.bizinfo {
+  margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--line);
+  display: flex; flex-wrap: wrap; gap: 0.3rem 1.1rem;
+  color: var(--ink-muted); font-size: 0.78rem; line-height: 1.65;
+}
+.bizinfo__name { color: var(--ink-soft); font-weight: 800; }
+.bizinfo em { font-style: normal; opacity: 0.7; }
+
+/* ---------- Reservation modal ---------- */
+.modal { position: fixed; inset: 0; z-index: var(--z-overlay); display: grid; place-items: center; padding: 1.2rem; opacity: 0; transition: opacity var(--dur-1) var(--ease-out-quart); }
+.modal.is-open { opacity: 1; }
+.modal[hidden] { display: none; }
+.modal__backdrop { position: absolute; inset: 0; background: oklch(0.08 0.01 60 / 0.72); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.modal__dialog {
+  position: relative; z-index: 1; width: min(92vw, 440px);
+  background: linear-gradient(160deg, var(--surface), oklch(0.14 0.016 60));
+  border: 1px solid var(--line-strong); border-radius: var(--r-lg);
+  padding: clamp(1.7rem, 1rem + 2.5vw, 2.5rem);
+  box-shadow: 0 40px 100px -30px oklch(0 0 0 / 0.9);
+  transform: translateY(14px) scale(0.98); transition: transform var(--dur-1) var(--ease-out-quint);
+}
+.modal.is-open .modal__dialog { transform: none; }
+.modal__close { position: absolute; top: 0.9rem; right: 0.9rem; width: 40px; height: 40px; display: grid; place-items: center; border-radius: var(--r-pill); color: var(--ink-muted); border: 1px solid var(--line); }
+.modal__close:hover { color: var(--ink); border-color: var(--line-strong); }
+.modal__close svg { width: 20px; height: 20px; }
+.modal__title { font-size: var(--step-2); margin-top: 0.4rem; }
+.modal__sub { color: var(--ink-muted); font-size: var(--step--1); margin-top: 0.4rem; margin-bottom: 1.5rem; }
+.modal__vendors { display: grid; gap: 0.7rem; }
+.vendor--lg { display: flex; align-items: center; justify-content: space-between; gap: 0.6em; padding: 1em 1.3em; font-size: var(--step-0); border-radius: var(--r-md); }
+.vendor--lg.vendor--phone { justify-content: center; }
+.vendor--lg svg { width: 1.15em; height: 1.15em; flex: none; }
+@media (prefers-reduced-motion: reduce) {
+  .modal, .modal__dialog { transition: none; }
+}

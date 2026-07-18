@@ -187,6 +187,41 @@
     });
   }
 
+  /* ================= 예매 모달 ================= */
+  function initBooking() {
+    var modal = document.getElementById("bookModal");
+    if (!modal) return;
+    var lastFocus = null;
+    function open() {
+      lastFocus = document.activeElement;
+      modal.hidden = false;
+      // next frame so the transition runs
+      requestAnimationFrame(function () { modal.classList.add("is-open"); });
+      document.body.style.overflow = "hidden";
+      var first = modal.querySelector(".modal__vendors a, .modal__close");
+      if (first) first.focus();
+    }
+    function close() {
+      modal.classList.remove("is-open");
+      document.body.style.overflow = "";
+      var done = function () {
+        modal.hidden = true;
+        modal.removeEventListener("transitionend", done);
+      };
+      modal.addEventListener("transitionend", done);
+      // fallback if no transition fires
+      setTimeout(function () { if (!modal.classList.contains("is-open")) modal.hidden = true; }, 400);
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+    document.addEventListener("click", function (e) {
+      if (e.target.closest("[data-book-open]")) { e.preventDefault(); open(); }
+      else if (e.target.closest("[data-book-close]")) { e.preventDefault(); close(); }
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !modal.hidden) close();
+    });
+  }
+
   /* ================= Boot ================= */
   function boot() {
     initHero();
@@ -194,6 +229,7 @@
     initReveal();
     initCountdown();
     initRain();
+    initBooking();
   }
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", boot);
