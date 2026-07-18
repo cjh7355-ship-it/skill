@@ -787,3 +787,31 @@ p { text-wrap: pretty; }
 .seatmap { max-width: 780px; margin: 0 auto clamp(1.5rem, 3vw, 2.4rem); border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; background: var(--bg-deep); }
 .seatmap img { width: 100%; height: auto; display: block; }
 .seatmap figcaption { padding: 0.75rem 1rem; font-size: var(--step--1); color: var(--ink-muted); text-align: center; border-top: 1px solid var(--line); }
+
+/* ---------- Nav brand (title at top) ---------- */
+.nav__brand { font-size: var(--step-0); font-weight: 800; letter-spacing: 0.01em; white-space: nowrap; }
+.nav__brand-city { color: var(--gold); }
+@media (max-width: 430px) { .nav__brand { font-size: var(--step--1); } }
+
+/* ---------- Poster section (moved below hero) ---------- */
+.posterband { padding-block: clamp(3rem, 2rem + 5vw, 6rem); }
+.posterfig {
+  width: fit-content; max-width: 92vw; height: min(72svh, 640px);
+  margin-inline: auto; border-radius: var(--r-lg); overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: 0 40px 100px -40px oklch(0 0 0 / 0.9), 0 0 60px -22px oklch(0.64 0.19 26 / 0.32);
+}
+.posterfig img { height: 100%; width: auto; display: block; }
+@media (max-width: 560px) { .posterfig { height: auto; width: min(92vw, 460px); } }
+
+/* ---------- Seat map (inline SVG) ---------- */
+.seatmap__svg { display: block; width: 100%; height: auto; background: var(--bg-deep); padding: clamp(0.6rem, 2vw, 1.3rem); }
+
+/* ---------- Seats: information only (not selectable) ---------- */
+.tiers--rows.tiers--info { padding-left: 0; list-style: none; }
+.tier--r { --grade: #7c2e8c; }
+.tier--s { --grade: #21406f; }
+.tier--a { --grade: #238040; }
+.tiers--info .tier { cursor: default; border-left: 4px solid var(--grade, var(--line)); }
+.tiers--info .tier:hover { transform: none; border-color: var(--line); border-left-color: var(--grade, var(--line)); }
+.tiers--info .tier__grade { color: var(--ink); }

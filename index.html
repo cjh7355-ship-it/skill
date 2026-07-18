@@ -1,10 +1,8 @@
 <!--
   슈퍼디바 적우 콘서트 - 대구 랜딩페이지
   ─────────────────────────────────────────────
-  ⚑ 자리표시(placeholder) 안내
-    아래 [data-editable] 표시가 붙은 값은 실제 정보로 교체하세요.
-    (공연장·시간·티켓가·예매 오픈일·예매처 링크·주소 등)
-    실제 적우님 사진이 준비되면 .stage / .poster 영역에 넣으면 됩니다.
+  ⚑ [data-editable] 값은 실제 정보로 교체하세요.
+  포스터/좌석배치도: assets/poster-jeokwoo-daegu.jpg · 좌석배치도는 인라인 SVG.
 -->
 <html lang="ko">
 <head>
@@ -21,13 +19,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <!-- Enables reveal animations only when JS runs; keeps content visible for no-JS / crawlers -->
   <script>document.documentElement.classList.add("reveal-ready");</script>
 </head>
 <body>
 
   <!-- ============ NAV ============ -->
   <nav class="nav" id="nav" aria-label="주요">
+    <a class="nav__brand" href="#top">슈퍼디바 적우 콘서트<span class="nav__brand-city"> · 대구</span></a>
     <div class="nav__menu-links">
       <div class="nav__links">
         <a href="#details">공연 정보</a>
@@ -39,16 +37,62 @@
     <button class="btn nav__cta" type="button" data-book-open>예매하기</button>
   </nav>
 
-  <!-- ============ HERO (공식 포스터) ============ -->
-  <header class="hero hero--poster" id="top">
+  <!-- ============ HERO ============ -->
+  <header class="hero" id="top">
     <canvas class="hero__canvas" aria-hidden="true"></canvas>
     <div class="hero__glow" aria-hidden="true"></div>
+    <svg class="hero__beams" viewBox="0 0 1100 900" preserveAspectRatio="xMidYMin slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="oklch(0.62 0.19 26)" stop-opacity="0.55" />
+          <stop offset="1" stop-color="oklch(0.62 0.19 26)" stop-opacity="0" />
+        </linearGradient>
+      </defs>
+      <polygon points="540,-40 470,900 610,900" fill="url(#beam)" />
+      <polygon points="540,-40 250,900 430,900" fill="url(#beam)" opacity="0.6" />
+      <polygon points="540,-40 660,900 850,900" fill="url(#beam)" opacity="0.6" />
+      <polygon points="540,-40 60,900 260,900" fill="url(#beam)" opacity="0.35" />
+      <polygon points="540,-40 840,900 1040,900" fill="url(#beam)" opacity="0.35" />
+    </svg>
     <div class="hero__vignette" aria-hidden="true"></div>
 
     <div class="container hero__inner">
-      <figure class="hero__poster" data-reveal>
-        <img src="assets/poster-jeokwoo-daegu.jpg" width="467" height="651" alt="슈퍼디바 적우 콘서트 - 대구 공식 포스터. 2026년 8월 22일 토요일 오후 4시, 영남대학교 천마아트센터 그랜드홀." />
-      </figure>
+      <p class="hero__kicker">
+        <span>슈퍼디바 콘서트</span><span class="sep"></span><span class="muted">DAEGU 2026</span>
+      </p>
+
+      <h1 class="hero__title">
+        <span class="name">적우</span>
+        <span class="show">슈퍼디바</span>
+      </h1>
+
+      <p class="hero__sub">불이 꺼지고 첫 음이 울리면,<br />그 밤은 온전히 목소리의 것이 됩니다.</p>
+
+      <div class="hero__meta">
+        <span data-editable="date">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          2026. 08. 22 (토) 오후 4시
+        </span>
+        <span data-editable="venue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          영남대 천마아트센터 그랜드홀
+        </span>
+      </div>
+
+      <div class="hero__cta">
+        <button class="btn" type="button" data-book-open>예매하기 <span class="btn__arrow" aria-hidden="true">→</span></button>
+        <a class="btn btn--ghost" href="#details">공연 정보 보기</a>
+      </div>
+
+      <div class="countdown" aria-live="off">
+        <span class="countdown__label">공연까지</span>
+        <div class="countdown__grid" id="countdown" role="timer" aria-label="공연까지 남은 시간">
+          <div class="countdown__cell"><span class="countdown__num" data-cd="days">--</span><span class="countdown__unit">일</span></div>
+          <div class="countdown__cell"><span class="countdown__num" data-cd="hours">--</span><span class="countdown__unit">시간</span></div>
+          <div class="countdown__cell"><span class="countdown__num" data-cd="mins">--</span><span class="countdown__unit">분</span></div>
+          <div class="countdown__cell"><span class="countdown__num" data-cd="secs">--</span><span class="countdown__unit">초</span></div>
+        </div>
+      </div>
     </div>
 
     <div class="hero__scroll" aria-hidden="true">
@@ -58,6 +102,15 @@
   </header>
 
   <main>
+    <!-- ============ POSTER ============ -->
+    <section class="section posterband" id="poster">
+      <div class="container">
+        <figure class="posterfig" data-reveal>
+          <img src="assets/poster-jeokwoo-daegu.jpg" width="467" height="651" alt="슈퍼디바 적우 콘서트 - 대구 공식 포스터. 2026년 8월 22일 토요일 오후 4시, 영남대학교 천마아트센터 그랜드홀." />
+        </figure>
+      </div>
+    </section>
+
     <!-- ============ DETAILS ============ -->
     <section class="section band" id="details">
       <div class="container">
@@ -80,38 +133,87 @@
       </div>
     </section>
 
-    <!-- ============ TICKETS ============ -->
+    <!-- ============ TICKETS (좌석 안내) ============ -->
     <section class="section" id="tickets">
       <div class="container">
         <div class="section__head" data-reveal>
           <p class="eyebrow">티켓</p>
-          <h2 class="section__title">좌석 · 예매 안내</h2>
-          <p class="section__lead">좌석 등급별 가격입니다. 예매 오픈과 동시에 예매처에서 구매하실 수 있습니다.</p>
+          <h2 class="section__title">좌석 안내</h2>
+          <p class="section__lead">좌석 등급과 배치 안내입니다. 좌석 선택·예매는 아래 <b>예매하기</b>에서 각 예매처를 통해 진행됩니다.</p>
         </div>
 
         <figure class="seatmap" data-reveal>
-          <img src="assets/seatmap-daegu.jpg" width="896" height="677" alt="공연장 좌석 배치도. 무대(STAGE) 기준 1층·2층에 A·B·C·D·E 구역이 배치되어 있으며, 색상은 R석(보라)·S석(남색)·A석(초록) 등급을 나타냅니다." />
-          <figcaption>좌석 배치도 · 색상은 좌석 등급을 나타냅니다 (R석 · S석 · A석).</figcaption>
+          <svg class="seatmap__svg" viewBox="0 0 920 650" role="img" aria-label="공연장 좌석 배치도: 무대 기준 1층은 R석, 2층은 S석과 후면 A석, 분홍 표시는 장애인석입니다." xmlns="http://www.w3.org/2000/svg">
+            <rect x="300" y="30" width="320" height="42" rx="6" fill="#e9e6ec"/>
+            <text x="460" y="52" fill="#1b1520" font-size="22" font-weight="800" text-anchor="middle" dominant-baseline="central">STAGE</text>
+            <polygon points="330,86 590,86 612,128 308,128" fill="#7c2e8c" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
+            <text x="460" y="108" fill="#f5f2f6" font-size="17" font-weight="700" text-anchor="middle" dominant-baseline="central">OP</text>
+            <polygon points="254,142 330,142 259.2,300 136,300" fill="#7c2e8c" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
+            <text x="244.8" y="225" fill="#f5f2f6" font-size="27" font-weight="800" text-anchor="middle" dominant-baseline="central">A</text>
+            <polygon points="338,142 414,142 390.4,300 267.2,300" fill="#7c2e8c" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
+            <text x="352.4" y="225" fill="#f5f2f6" font-size="27" font-weight="800" text-anchor="middle" dominant-baseline="central">B</text>
+            <polygon points="422,142 498,142 521.6,300 398.4,300" fill="#7c2e8c" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
+            <text x="460" y="225" fill="#f5f2f6" font-size="27" font-weight="800" text-anchor="middle" dominant-baseline="central">C</text>
+            <polygon points="506,142 582,142 652.8,300 529.6,300" fill="#7c2e8c" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
+            <text x="567.6" y="225" fill="#f5f2f6" font-size="27" font-weight="800" text-anchor="middle" dominant-baseline="central">D</text>
+            <polygon points="590,142 666,142 784,300 660.8,300" fill="#7c2e8c" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
+            <text x="675.2" y="225" fill="#f5f2f6" font-size="27" font-weight="800" text-anchor="middle" dominant-baseline="central">E</text>
+            <rect x="418" y="300" width="84" height="20" rx="3" fill="#c9c3cf"/>
+            <text x="460" y="310" fill="#2a2430" font-size="10" font-weight="700" text-anchor="middle" dominant-baseline="central">CONSOLE</text>
+            <text x="800" y="222" fill="#cfc8d4" font-size="22" font-weight="700" text-anchor="middle" dominant-baseline="central">1층</text>
+            <text x="800" y="452" fill="#cfc8d4" font-size="22" font-weight="700" text-anchor="middle" dominant-baseline="central">2층</text>
+            <polygon points="218,372 308.4,372 273.1,462 159.2,462" fill="#21406f" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
+            <polygon points="159.2,462 273.1,462 249.6,522 120,522" fill="#238040" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
+            <text x="224" y="415" fill="#f5f2f6" font-size="24" font-weight="800" text-anchor="middle" dominant-baseline="central">A</text>
+            <polygon points="316.4,372 406.8,372 395,462 281.1,462" fill="#21406f" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
+            <polygon points="281.1,462 395,462 387.2,522 257.6,522" fill="#238040" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
+            <text x="342" y="415" fill="#f5f2f6" font-size="24" font-weight="800" text-anchor="middle" dominant-baseline="central">B</text>
+            <polygon points="414.8,372 505.2,372 517,462 403,462" fill="#21406f" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
+            <polygon points="403,462 517,462 524.8,522 395.2,522" fill="#238040" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
+            <text x="460" y="415" fill="#f5f2f6" font-size="24" font-weight="800" text-anchor="middle" dominant-baseline="central">C</text>
+            <polygon points="513.2,372 603.6,372 638.9,462 525,462" fill="#21406f" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
+            <polygon points="525,462 638.9,462 662.4,522 532.8,522" fill="#238040" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
+            <text x="578" y="415" fill="#f5f2f6" font-size="24" font-weight="800" text-anchor="middle" dominant-baseline="central">D</text>
+            <polygon points="611.6,372 702,372 760.8,462 646.9,462" fill="#21406f" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
+            <polygon points="646.9,462 760.8,462 800,522 670.4,522" fill="#238040" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
+            <text x="696" y="415" fill="#f5f2f6" font-size="24" font-weight="800" text-anchor="middle" dominant-baseline="central">E</text>
+            <rect x="70" y="392" width="44" height="40" rx="10" fill="#21406f" stroke="#0d0b10" stroke-width="3"/>
+            <text x="92" y="412" fill="#f5f2f6" font-size="17" font-weight="700" text-anchor="middle" dominant-baseline="central">A</text>
+            <rect x="806" y="392" width="44" height="40" rx="10" fill="#21406f" stroke="#0d0b10" stroke-width="3"/>
+            <text x="828" y="412" fill="#f5f2f6" font-size="17" font-weight="700" text-anchor="middle" dominant-baseline="central">E</text>
+            <rect x="262" y="150" width="30" height="14" rx="4" fill="#e79bb3" stroke="#0d0b10" stroke-width="2"/>
+            <rect x="628" y="150" width="30" height="14" rx="4" fill="#e79bb3" stroke="#0d0b10" stroke-width="2"/>
+            <rect x="360" y="278" width="30" height="14" rx="4" fill="#e79bb3" stroke="#0d0b10" stroke-width="2"/>
+            <rect x="548" y="278" width="30" height="14" rx="4" fill="#e79bb3" stroke="#0d0b10" stroke-width="2"/>
+            <rect x="150" y="580" width="26" height="26" rx="5" fill="#7c2e8c"/>
+            <text x="184" y="594" fill="#f5f2f6" font-size="19" font-weight="800" dominant-baseline="central">R석</text>
+            <rect x="300" y="580" width="26" height="26" rx="5" fill="#21406f"/>
+            <text x="334" y="594" fill="#f5f2f6" font-size="19" font-weight="800" dominant-baseline="central">S석</text>
+            <rect x="450" y="580" width="26" height="26" rx="5" fill="#238040"/>
+            <text x="484" y="594" fill="#f5f2f6" font-size="19" font-weight="800" dominant-baseline="central">A석</text>
+            <rect x="600" y="580" width="26" height="26" rx="5" fill="#e79bb3"/>
+            <text x="634" y="594" fill="#f5f2f6" font-size="19" font-weight="800" dominant-baseline="central">장애인석</text>
+          </svg>
+          <figcaption>좌석 배치도 · 색상은 좌석 등급을 나타냅니다. <b style="color:#e79bb3">분홍색은 장애인석</b>입니다.</figcaption>
         </figure>
 
-        <div class="tiers tiers--rows" data-reveal-stagger>
-          <div class="tier tier--row tier--best">
-            <span class="tier__badge">BEST</span>
+        <ul class="tiers tiers--rows tiers--info" data-reveal-stagger aria-label="좌석 등급 안내">
+          <li class="tier tier--row tier--r">
             <div class="tier__grade">R석</div>
-            <p class="tier__desc">무대와 가장 가까운 중앙 시야의 인기 좌석.</p>
+            <p class="tier__desc">1층 · 무대와 가장 가까운 중앙 시야.</p>
             <div class="tier__price" data-editable="price-r">132,000<small>원</small></div>
-          </div>
-          <div class="tier tier--row">
+          </li>
+          <li class="tier tier--row tier--s">
             <div class="tier__grade">S석</div>
-            <p class="tier__desc">무대 전체가 보이는 안정적인 시야.</p>
+            <p class="tier__desc">2층 · 무대 전체가 보이는 안정적인 시야.</p>
             <div class="tier__price" data-editable="price-s">125,000<small>원</small></div>
-          </div>
-          <div class="tier tier--row">
+          </li>
+          <li class="tier tier--row tier--a">
             <div class="tier__grade">A석</div>
-            <p class="tier__desc">합리적인 가격으로 만나는 무대.</p>
+            <p class="tier__desc">2층 후면 · 합리적인 가격으로 만나는 무대.</p>
             <div class="tier__price" data-editable="price-a">121,000<small>원</small></div>
-          </div>
-        </div>
+          </li>
+        </ul>
 
         <div class="tickets__action" data-reveal>
           <button class="btn" type="button" data-book-open>예매하기 <span class="btn__arrow" aria-hidden="true">→</span></button>
@@ -179,6 +281,10 @@
             <div class="faq__body" data-editable="age-note">본 공연은 만 7세 이상 관람 가능합니다. 연령과 무관하게 1인 1석(티켓)이 필요합니다.</div>
           </details>
           <details>
+            <summary>장애인석 예매는 어떻게 하나요? <span class="plus" aria-hidden="true"></span></summary>
+            <div class="faq__body">좌석 배치도의 <b style="color:#e79bb3">분홍색 구역</b>이 장애인석입니다. 예매 및 동반 보호자 안내는 각 예매처 고객센터 또는 전화예매(1544-1555)로 문의해 주세요.</div>
+          </details>
+          <details>
             <summary>촬영이나 음식물 반입이 되나요? <span class="plus" aria-hidden="true"></span></summary>
             <div class="faq__body">
               <ul>
@@ -198,7 +304,6 @@
     <div class="container">
       <div class="footer__grid">
         <div class="footer__meta">
-          <span class="footer__brand">슈퍼디바 적우 콘서트 · 대구</span>
           <span data-editable="footer-host">주최 · 주관 FX솔루션</span>
           <span data-editable="footer-contact">예매문의 1544-1555 (NOL 티켓)</span>
         </div>
