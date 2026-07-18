@@ -12,7 +12,7 @@
 
   /* ---------- Concert datetime (EDIT HERE) ----------
      실제 공연 일시로 교체하세요. (연, 월(0=1월), 일, 시, 분) */
-  var SHOW_DATE = new Date(2026, 7, 22, 19, 0, 0); // 2026-08-22 19:00
+  var SHOW_DATE = new Date(2026, 7, 22, 16, 0, 0); // 2026-08-22 16:00 (오후 4시)
 
   /* ================= Golden rain canvas ================= */
   function initRain() {
