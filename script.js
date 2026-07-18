@@ -56,8 +56,8 @@
         d.x += d.drift * dt;
         if (d.y - d.len > h) { drops[i] = makeDrop(false); continue; }
         var grad = ctx.createLinearGradient(d.x, d.y - d.len, d.x, d.y);
-        grad.addColorStop(0, "oklch(0.88 0.13 90 / 0)");
-        grad.addColorStop(1, "oklch(0.88 0.13 90 / " + d.a.toFixed(2) + ")");
+        grad.addColorStop(0, "oklch(0.62 0.19 26 / 0)");
+        grad.addColorStop(1, "oklch(0.62 0.19 26 / " + d.a.toFixed(2) + ")");
         ctx.strokeStyle = grad;
         ctx.lineWidth = d.wide ? 1.6 : 0.8;
         ctx.beginPath();
@@ -74,7 +74,7 @@
       // Static single frame: a few faint streaks, no animation loop.
       for (var i = 0; i < drops.length; i++) {
         var d = drops[i];
-        ctx.strokeStyle = "oklch(0.88 0.13 90 / " + (d.a * 0.6).toFixed(2) + ")";
+        ctx.strokeStyle = "oklch(0.62 0.19 26 / " + (d.a * 0.6).toFixed(2) + ")";
         ctx.lineWidth = 0.8;
         ctx.beginPath();
         ctx.moveTo(d.x, d.y - d.len);
