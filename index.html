@@ -56,21 +56,19 @@
     <div class="hero__vignette" aria-hidden="true"></div>
 
     <div class="container hero__inner">
-      <h1 class="visually-hidden">슈퍼디바 적우 콘서트 - 대구</h1>
+      <h1 class="hero__title-text">슈퍼디바 적우 콘서트 <span class="hero__title-city">- 대구</span></h1>
 
-      <div class="countdown" aria-live="off">
-        <span class="countdown__label">공연까지</span>
-        <div class="countdown__grid" id="countdown" role="timer" aria-label="공연까지 남은 시간">
-          <div class="countdown__cell"><span class="countdown__num" data-cd="days">--</span><span class="countdown__unit">일</span></div>
-          <div class="countdown__cell"><span class="countdown__num" data-cd="hours">--</span><span class="countdown__unit">시간</span></div>
-          <div class="countdown__cell"><span class="countdown__num" data-cd="mins">--</span><span class="countdown__unit">분</span></div>
-          <div class="countdown__cell"><span class="countdown__num" data-cd="secs">--</span><span class="countdown__unit">초</span></div>
+      <div class="hero__poster" data-reveal style="background-image:url(assets/poster-banner.jpg)" role="img" aria-label="슈퍼디바 적우 콘서트 - 대구 포스터">
+        <div class="hero__cd">
+          <span class="countdown__label">공연까지</span>
+          <div class="countdown__grid" id="countdown" role="timer" aria-label="공연까지 남은 시간">
+            <div class="countdown__cell"><span class="countdown__num" data-cd="days">--</span><span class="countdown__unit">일</span></div>
+            <div class="countdown__cell"><span class="countdown__num" data-cd="hours">--</span><span class="countdown__unit">시간</span></div>
+            <div class="countdown__cell"><span class="countdown__num" data-cd="mins">--</span><span class="countdown__unit">분</span></div>
+            <div class="countdown__cell"><span class="countdown__num" data-cd="secs">--</span><span class="countdown__unit">초</span></div>
+          </div>
         </div>
       </div>
-
-      <figure class="hero__banner" data-reveal>
-        <img src="assets/poster-banner.jpg" width="467" height="325" alt="슈퍼디바 적우 콘서트 - 대구 · JEOKWOO 2026 CONCERT IN DAEGU · 보고싶다 대구 · SUPER DIVA" />
-      </figure>
 
       <div class="hero__meta">
         <span data-editable="date">
@@ -219,14 +217,10 @@
         </div>
 
         <div class="location__grid">
-          <a class="map map--naver" href="https://map.naver.com/p/search/영남대학교 천마아트센터 그랜드홀" target="_blank" rel="noopener noreferrer" data-reveal aria-label="네이버 지도에서 공연장 위치 보기">
-            <div class="map__pin">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg>
-              <b data-editable="venue-map">영남대학교 천마아트센터 그랜드홀</b>
-              <span>경상북도 경산시 대학로 280 (대동)</span>
-              <span class="map__cta">네이버 지도에서 보기 <span aria-hidden="true">↗</span></span>
-            </div>
-          </a>
+          <div class="map map--embed" data-reveal>
+            <iframe class="map__frame" title="공연장 위치 지도 (영남대학교 천마아트센터 그랜드홀)" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen src="https://www.google.com/maps?q=%EC%98%81%EB%82%A8%EB%8C%80%ED%95%99%EA%B5%90%20%EC%B2%9C%EB%A7%88%EC%95%84%ED%8A%B8%EC%84%BC%ED%84%B0%20%EA%B7%B8%EB%9E%9C%EB%93%9C%ED%99%80&output=embed&hl=ko"></iframe>
+            <a class="map__open" href="https://map.naver.com/p/search/영남대학교 천마아트센터 그랜드홀" target="_blank" rel="noopener noreferrer">네이버 지도에서 열기 <span aria-hidden="true">↗</span></a>
+          </div>
 
           <div class="location__info">
             <div class="location__block" data-reveal>

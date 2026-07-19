@@ -863,3 +863,44 @@ p { text-wrap: pretty; }
   .mobilecta__actions { flex: 1; }
   .mobilecta__actions .btn:first-child { flex: 1; }
 }
+
+/* ---------- Hero: static title + poster-as-background countdown ---------- */
+.hero__title-text {
+  font-size: var(--step-2); font-weight: 800; letter-spacing: 0.01em; color: var(--ink);
+  margin-bottom: clamp(0.9rem, 2.2vw, 1.5rem); line-height: 1.2;
+}
+.hero__title-city { color: var(--gold); }
+.hero__poster {
+  position: relative; width: min(92vw, 600px); height: auto; margin: 0 auto;
+  aspect-ratio: 467 / 325; background-size: cover; background-position: center;
+  border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--line);
+  box-shadow: 0 30px 80px -40px oklch(0 0 0 / 0.9), 0 0 52px -18px oklch(0.64 0.19 26 / 0.35);
+}
+.hero__poster::before {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: linear-gradient(to bottom, oklch(0.08 0.01 60 / 0) 40%, oklch(0.07 0.01 60 / 0.55) 72%, oklch(0.04 0.01 60 / 0.9) 100%);
+}
+.hero__cd {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 1;
+  padding: clamp(0.7rem, 2.4vw, 1.3rem);
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+}
+.hero__cd .countdown__cell { background: oklch(0.10 0.014 60 / 0.62); }
+.hero__cd .countdown__label { color: var(--ink); text-shadow: 0 1px 6px oklch(0 0 0 / 0.6); }
+
+/* ---------- Google map embed ---------- */
+.map--embed { display: block; padding: 0; overflow: hidden; position: relative; min-height: 340px; }
+.map__frame { width: 100%; height: 100%; min-height: 340px; border: 0; display: block; }
+.map__open {
+  position: absolute; right: 0.8rem; bottom: 0.8rem; z-index: 2;
+  background: oklch(0.12 0.014 60 / 0.9); color: var(--ink);
+  border: 1px solid var(--line-strong); border-radius: var(--r-pill);
+  padding: 0.5em 0.95em; font-size: var(--step--1); font-weight: 700;
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+}
+.map__open:hover { border-color: var(--gold); color: var(--gold-bright); }
+.map__note {
+  display: grid; place-items: center; text-align: center; gap: 0.3rem;
+  padding: 2rem 1.4rem; color: var(--ink-muted); font-size: var(--step--1); line-height: 1.6;
+  min-height: 340px;
+}
