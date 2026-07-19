@@ -994,3 +994,19 @@ p { text-wrap: pretty; }
   font-weight: 400; font-size: var(--step-3); letter-spacing: 0.02em; line-height: 1.15;
 }
 .hero__title-city { font-family: "JeokwooBrush", var(--font); }
+
+/* ---------- 최상단 여백 추가 축소 ---------- */
+.nav { padding-block: 0.6rem; }
+.hero { padding-top: clamp(3.1rem, 2.5rem + 1vw, 3.6rem); }
+
+/* ---------- 상단 간격 살짝 확보(0 방지) + 히어로 정보영역 정리 ---------- */
+.hero { padding-top: clamp(3.5rem, 2.9rem + 1vw, 4rem); }
+
+/* 좁은 화면: 일시/장소/관람시간을 세로로 깔끔하게(어정쩡한 2+1 줄바꿈 방지) */
+@media (max-width: 760px) {
+  .hero__meta { flex-direction: column; align-items: center; gap: 0.55rem; }
+}
+/* 정보 블록 세로 리듬 정돈 */
+.countdown { margin-top: clamp(1rem, 2.5vw, 1.5rem); }
+.hero__meta { margin-top: clamp(1.1rem, 2.5vw, 1.6rem); }
+.hero__prices { margin-top: clamp(0.9rem, 2vw, 1.3rem); }
