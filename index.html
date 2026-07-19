@@ -2,7 +2,7 @@
   슈퍼디바 적우 콘서트 - 대구 랜딩페이지
   ─────────────────────────────────────────────
   ⚑ [data-editable] 값은 실제 정보로 교체하세요.
-  포스터/좌석배치도: assets/poster-jeokwoo-daegu.jpg · 좌석배치도는 인라인 SVG.
+  상단 배너: assets/poster-banner.jpg (포스터 상단 절반) · 좌석배치도는 인라인 SVG.
 -->
 <html lang="ko">
 <head>
@@ -57,9 +57,10 @@
     <div class="hero__vignette" aria-hidden="true"></div>
 
     <div class="container hero__inner">
-      <h1 class="hero__title">
-        <span class="name">적우</span>
-      </h1>
+      <h1 class="visually-hidden">슈퍼디바 적우 콘서트 - 대구</h1>
+      <figure class="hero__banner" data-reveal>
+        <img src="assets/poster-banner.jpg" width="467" height="325" alt="슈퍼디바 적우 콘서트 - 대구 · JEOKWOO 2026 CONCERT IN DAEGU · 보고싶다 대구 · SUPER DIVA" />
+      </figure>
 
       <div class="hero__meta">
         <span data-editable="date">
@@ -104,15 +105,6 @@
   </header>
 
   <main>
-    <!-- ============ POSTER ============ -->
-    <section class="section posterband" id="poster">
-      <div class="container">
-        <figure class="posterfig" data-reveal>
-          <img src="assets/poster-jeokwoo-daegu.jpg" width="467" height="651" alt="슈퍼디바 적우 콘서트 - 대구 공식 포스터. 2026년 8월 22일 토요일 오후 4시, 영남대학교 천마아트센터 그랜드홀." />
-        </figure>
-      </div>
-    </section>
-
     <!-- ============ DETAILS ============ -->
     <section class="section band" id="details">
       <div class="container">
