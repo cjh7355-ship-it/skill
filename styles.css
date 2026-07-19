@@ -7,30 +7,30 @@
 /* ---------- Tokens ---------- */
 :root {
   /* Surface — warm near-black stage (mood lives in accents, not a cream bg) */
-  --bg:            oklch(0.155 0.018 66);
-  --bg-deep:       oklch(0.115 0.014 60);
-  --surface:       oklch(0.205 0.022 62);
-  --surface-2:     oklch(0.255 0.026 64);
-  --line:          oklch(0.34 0.03 66 / 0.55);
-  --line-strong:   oklch(0.45 0.045 70 / 0.7);
+  --bg:            oklch(0.985 0.004 75);
+  --bg-deep:       oklch(0.955 0.008 75);
+  --surface:       oklch(1 0 0);
+  --surface-2:     oklch(0.965 0.006 75);
+  --line:          oklch(0.30 0.02 50 / 0.14);
+  --line-strong:   oklch(0.32 0.03 40 / 0.28);
 
-  /* Ink — warm ivory */
-  --ink:           oklch(0.960 0.018 88);
-  --ink-soft:      oklch(0.845 0.028 84);   /* ≥4.5:1 on --bg */
-  --ink-muted:     oklch(0.720 0.030 82);   /* large / secondary */
+  /* Ink — warm near-black on light */
+  --ink:           oklch(0.24 0.02 40);
+  --ink-soft:      oklch(0.40 0.02 40);      /* ≥4.5:1 on --bg */
+  --ink-muted:     oklch(0.54 0.02 45);      /* large / secondary */
 
-  /* Gold — the stage light, the brand carrier */
-  --gold:          oklch(0.64 0.19 26);
-  --gold-bright:   oklch(0.74 0.17 28);
-  --gold-deep:     oklch(0.52 0.20 25);
+  /* Crimson accent — 포스터 아트디렉션(적우=붉은 비) */
+  --gold:          oklch(0.53 0.21 26);
+  --gold-bright:   oklch(0.46 0.21 26);      /* hover(더 진한 크림슨) */
+  --gold-deep:     oklch(0.40 0.19 25);
   --bronze:        oklch(0.560 0.110 66);
 
-  /* Wine — 적우(붉은 비), used sparingly */
-  --wine:          oklch(0.520 0.170 25);
-  --wine-deep:     oklch(0.400 0.150 24);
+  /* Wine */
+  --wine:          oklch(0.48 0.18 25);
+  --wine-deep:     oklch(0.40 0.16 24);
 
-  /* On-gold text */
-  --on-gold:       oklch(0.985 0.006 25);
+  /* On-accent text (흰색) */
+  --on-gold:       oklch(0.99 0.005 80);
 
   /* Radii */
   --r-xs: 4px;
@@ -903,4 +903,50 @@ p { text-wrap: pretty; }
   display: grid; place-items: center; text-align: center; gap: 0.3rem;
   padding: 2rem 1.4rem; color: var(--ink-muted); font-size: var(--step--1); line-height: 1.6;
   min-height: 340px;
+}
+
+/* ============================================================
+   LIGHT THEME 보정 — 하드코딩 다크 색상을 밝은 톤으로 오버라이드
+   ============================================================ */
+.nav.is-scrolled { background: oklch(0.99 0.004 80 / 0.85); border-bottom-color: var(--line); }
+.hero__glow {
+  background:
+    radial-gradient(120% 80% at 50% -10%, oklch(0.62 0.20 26 / 0.12), transparent 55%),
+    radial-gradient(90% 60% at 50% 120%, oklch(0.55 0.16 25 / 0.08), transparent 60%),
+    linear-gradient(to bottom, var(--bg), var(--bg) 62%, var(--bg-deep));
+}
+.hero__beams { mix-blend-mode: multiply; opacity: 0.10; }
+.band { background: linear-gradient(to bottom, transparent, oklch(0.95 0.01 70 / 0.75), transparent); }
+.footer { background: linear-gradient(to bottom, transparent, oklch(0.955 0.008 70)); border-top-color: var(--line); }
+.mobilecta { background: oklch(0.99 0.004 80 / 0.95); border-top-color: var(--line); }
+.modal__dialog { background: linear-gradient(160deg, var(--surface), oklch(0.965 0.006 75)); box-shadow: 0 30px 80px -34px oklch(0.3 0.02 40 / 0.35); }
+.modal__backdrop { background: oklch(0.25 0.01 60 / 0.5); }
+
+.btn { box-shadow: 0 8px 22px -12px oklch(0.53 0.21 26 / 0.42); }
+.btn:hover { box-shadow: 0 14px 32px -12px oklch(0.53 0.21 26 / 0.52); }
+.btn--ghost { border-color: var(--line-strong); color: var(--ink); }
+.btn--ghost:hover { background: oklch(0.53 0.21 26 / 0.07); border-color: var(--gold); color: var(--gold-bright); }
+
+/* 히어로 포스터: 오버레이 제거(인물 노출), 그림자 완화 */
+.hero__poster::before { display: none; }
+.hero__poster { box-shadow: 0 24px 60px -38px oklch(0.3 0.02 40 / 0.34), 0 0 44px -22px oklch(0.55 0.2 26 / 0.24); }
+
+/* 카운트다운: 밝은 카드로 (포스터 밖에서 잘 보이게) */
+.countdown { margin-top: clamp(1.2rem, 3vw, 1.8rem); }
+.countdown__cell { background: var(--surface); border-color: var(--line); backdrop-filter: none; -webkit-backdrop-filter: none; box-shadow: 0 6px 18px -12px oklch(0.3 0.02 40 / 0.25); }
+.countdown__num { color: var(--gold); }
+.countdown__label { color: var(--ink-muted); }
+.countdown__unit { color: var(--ink-muted); }
+
+/* 좌석 배치도: 다크 다이어그램 카드로 유지(가독성) */
+.seatmap { background: #15121d; border-color: oklch(1 0 0 / 0.10); }
+.seatmap__svg { background: transparent; }
+.seatmap figcaption { color: oklch(0.82 0.01 80); border-top-color: oklch(1 0 0 / 0.12); }
+
+/* 전화예매 반응형: 모바일=전화걸기(라벨/아이콘), PC=번호표기 */
+.tel-num { display: none; }
+@media (min-width: 761px) {
+  .tel-label { display: none; }
+  .tel-num { display: inline; }
+  .mobilecta__tel.mobilecta__icon { width: auto; min-width: 0; padding: 0 1.05em; gap: 0.4em; }
 }

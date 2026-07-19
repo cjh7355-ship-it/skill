@@ -236,6 +236,29 @@
   }
 
   /* ================= 공유하기 ================= */
+  /* 카카오톡 공유 — developers.kakao.com JavaScript 키로 교체(+ 도메인 등록) */
+  var KAKAO_JS_KEY = "[KAKAO_JAVASCRIPT_APP_KEY]";
+  function initKakao() {
+    try {
+      if (window.Kakao && KAKAO_JS_KEY && KAKAO_JS_KEY.charAt(0) !== "[" && !window.Kakao.isInitialized()) {
+        window.Kakao.init(KAKAO_JS_KEY);
+      }
+    } catch (e) {}
+  }
+  function kakaoShare(url) {
+    try {
+      if (window.Kakao && window.Kakao.isInitialized() && window.Kakao.Share) {
+        window.Kakao.Share.sendDefault({
+          objectType: "text",
+          text: "슈퍼디바 적우 콘서트 - 대구\n2026.08.22 (토) 오후 4시 · 영남대 천마아트센터 그랜드홀",
+          link: { mobileWebUrl: url, webUrl: url }
+        });
+        return true;
+      }
+    } catch (e) {}
+    return false;
+  }
+
   function legacyCopy(text) {
     try {
       var ta = document.createElement("textarea");
@@ -258,6 +281,8 @@
       if (!t) return;
       e.preventDefault();
       var url = location.href;
+      // 1순위: 카카오톡 공유 (SDK+키 준비 시)
+      if (kakaoShare(url)) return;
       var data = {
         title: "슈퍼디바 적우 콘서트 - 대구",
         text: "슈퍼디바 적우 콘서트 - 대구 · 2026.08.22 (토) 오후 4시 · 영남대 천마아트센터",
@@ -304,6 +329,7 @@
     initCountdown();
     initRain();
     initBooking();
+    initKakao();
     initShare();
     initStickyCta();
   }

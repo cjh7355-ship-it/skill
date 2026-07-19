@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>슈퍼디바 적우 콘서트 - 대구 · 2026.08.22 영남대 천마아트센터</title>
   <meta name="description" content="슈퍼디바 적우 콘서트 대구 — 2026년 8월 22일(토) 영남대학교 천마아트센터 그랜드홀. 22년차 디바 적우의 목소리로 채우는 밤. 예매 안내와 공연 정보." />
-  <meta name="theme-color" content="#231c12" />
+  <meta name="theme-color" content="#faf7f3" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="슈퍼디바 적우 콘서트 - 대구 · 2026.08.22 영남대 천마아트센터" />
   <meta property="og:description" content="22년차 디바 적우의 목소리로 채우는 밤. 2026.08.22(토) 영남대 천마아트센터 그랜드홀." />
@@ -19,6 +19,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <!-- 카카오톡 공유 SDK (공유하기 버튼). Kakao.init 키는 script.js의 KAKAO_JS_KEY에서 설정 -->
+  <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js" crossorigin="anonymous"></script>
   <script>document.documentElement.classList.add("reveal-ready");</script>
 </head>
 <body>
@@ -27,13 +29,11 @@
   <nav class="nav" id="nav" aria-label="주요">
     <div class="nav__menu-links">
       <div class="nav__links">
-        <a href="#details">공연 정보</a>
         <a href="#tickets">티켓</a>
         <a href="#location">오시는 길</a>
         <a href="#notice">관람 안내</a>
       </div>
     </div>
-    <button class="btn nav__cta" type="button" data-book-open>예매하기</button>
   </nav>
 
   <!-- ============ HERO ============ -->
@@ -58,15 +58,15 @@
     <div class="container hero__inner">
       <h1 class="hero__title-text">슈퍼디바 적우 콘서트 <span class="hero__title-city">- 대구</span></h1>
 
-      <div class="hero__poster" data-reveal style="background-image:url(assets/poster-banner.jpg)" role="img" aria-label="슈퍼디바 적우 콘서트 - 대구 포스터">
-        <div class="hero__cd">
-          <span class="countdown__label">공연까지</span>
-          <div class="countdown__grid" id="countdown" role="timer" aria-label="공연까지 남은 시간">
-            <div class="countdown__cell"><span class="countdown__num" data-cd="days">--</span><span class="countdown__unit">일</span></div>
-            <div class="countdown__cell"><span class="countdown__num" data-cd="hours">--</span><span class="countdown__unit">시간</span></div>
-            <div class="countdown__cell"><span class="countdown__num" data-cd="mins">--</span><span class="countdown__unit">분</span></div>
-            <div class="countdown__cell"><span class="countdown__num" data-cd="secs">--</span><span class="countdown__unit">초</span></div>
-          </div>
+      <div class="hero__poster" data-reveal style="background-image:url(assets/poster-banner.jpg)" role="img" aria-label="슈퍼디바 적우 콘서트 - 대구 포스터"></div>
+
+      <div class="countdown" aria-live="off">
+        <span class="countdown__label">공연까지</span>
+        <div class="countdown__grid" id="countdown" role="timer" aria-label="공연까지 남은 시간">
+          <div class="countdown__cell"><span class="countdown__num" data-cd="days">--</span><span class="countdown__unit">일</span></div>
+          <div class="countdown__cell"><span class="countdown__num" data-cd="hours">--</span><span class="countdown__unit">시간</span></div>
+          <div class="countdown__cell"><span class="countdown__num" data-cd="mins">--</span><span class="countdown__unit">분</span></div>
+          <div class="countdown__cell"><span class="countdown__num" data-cd="secs">--</span><span class="countdown__unit">초</span></div>
         </div>
       </div>
 
@@ -79,6 +79,10 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
           영남대 천마아트센터 그랜드홀
         </span>
+        <span data-editable="runtime">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg>
+          관람시간 약 120분
+        </span>
       </div>
 
       <p class="hero__prices" data-editable="hero-prices">R석 132,000원 · S석 125,000원 · A석 121,000원</p>
@@ -87,7 +91,7 @@
         <button class="btn" type="button" data-book-open>온라인예매</button>
         <a class="btn btn--ghost" href="tel:15441555">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="18" height="18"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.15.38 2.36.58 3.6.58a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.3a1 1 0 0 1 1 1c0 1.25.2 2.46.58 3.6a1 1 0 0 1-.25 1Z"/></svg>
-          전화예매
+          <span class="tel-label">전화예매</span><span class="tel-num">1544-1555</span>
         </a>
         <button class="btn btn--ghost" type="button" data-share>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" width="18" height="18"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
@@ -104,86 +108,65 @@
   </header>
 
   <main>
-    <!-- ============ DETAILS ============ -->
-    <section class="section band" id="details">
-      <div class="container">
-        <div class="section__head" data-reveal>
-          <p class="eyebrow">공연 정보</p>
-        </div>
-
-        <div class="stub" data-reveal style="max-width:760px;margin-inline:auto">
-          <dl class="dl">
-            <div class="dl__row"><dt>관람시간</dt><dd data-editable="runtime">약 120분</dd></div>
-            <div class="dl__row"><dt>공연명</dt><dd data-editable="title">슈퍼디바 적우 콘서트 - 대구</dd></div>
-            <div class="dl__row"><dt>일시</dt><dd data-editable="datetime">2026년 8월 22일 (토) 오후 4시 <small>※ 입장 오후 3시 (공연 시작 1시간 전)</small></dd></div>
-            <div class="dl__row"><dt>장소</dt><dd data-editable="venue-full">영남대학교 천마아트센터 그랜드홀 <small>(경상북도 경산 · 대구 인접)</small></dd></div>
-            <div class="dl__row"><dt>관람등급</dt><dd data-editable="rating">만 7세 이상 관람 가능</dd></div>
-            <div class="dl__row"><dt>주최 · 주관</dt><dd data-editable="host">FX솔루션</dd></div>
-          </dl>
-        </div>
-      </div>
-    </section>
-
     <!-- ============ TICKETS (좌석 안내) ============ -->
     <section class="section" id="tickets">
       <div class="container">
         <div class="section__head" data-reveal>
           <p class="eyebrow">티켓</p>
-          <h2 class="section__title">좌석 안내</h2>
         </div>
 
         <figure class="seatmap" data-reveal>
-          <svg class="seatmap__svg" viewBox="0 0 920 650" role="img" aria-label="공연장 좌석 배치도: 무대 기준 1층은 R석, 2층은 S석과 후면 A석, 분홍 표시는 장애인석입니다." xmlns="http://www.w3.org/2000/svg">
+            <svg class="seatmap__svg" viewBox="0 0 920 650" role="img" aria-label="공연장 좌석 배치도: 무대 기준 1층은 R석, 2층은 S석과 후면 A석, 분홍 표시는 장애인석입니다." xmlns="http://www.w3.org/2000/svg">
             <rect x="300" y="30" width="320" height="42" rx="6" fill="#e9e6ec"/>
-            <text x="460" y="52" fill="#1b1520" font-size="22" font-weight="800" text-anchor="middle" dominant-baseline="central">STAGE</text>
+            <text x="460" y="52" fill="#1b1520" font-size="20" font-weight="800" text-anchor="middle" dominant-baseline="central">STAGE</text>
             <polygon points="330,86 590,86 612,128 308,128" fill="#7c2e8c" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
-            <text x="460" y="108" fill="#f5f2f6" font-size="17" font-weight="700" text-anchor="middle" dominant-baseline="central">OP</text>
+            <text x="460" y="108" fill="#f5f2f6" font-size="14" font-weight="700" text-anchor="middle" dominant-baseline="central">OP</text>
             <polygon points="254,142 330,142 259.2,300 136,300" fill="#7c2e8c" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
-            <text x="244.8" y="225" fill="#f5f2f6" font-size="27" font-weight="800" text-anchor="middle" dominant-baseline="central">A</text>
+            <text x="244.8" y="225" fill="#f5f2f6" font-size="22" font-weight="800" text-anchor="middle" dominant-baseline="central">A</text>
             <polygon points="338,142 414,142 390.4,300 267.2,300" fill="#7c2e8c" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
-            <text x="352.4" y="225" fill="#f5f2f6" font-size="27" font-weight="800" text-anchor="middle" dominant-baseline="central">B</text>
+            <text x="352.4" y="225" fill="#f5f2f6" font-size="22" font-weight="800" text-anchor="middle" dominant-baseline="central">B</text>
             <polygon points="422,142 498,142 521.6,300 398.4,300" fill="#7c2e8c" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
-            <text x="460" y="225" fill="#f5f2f6" font-size="27" font-weight="800" text-anchor="middle" dominant-baseline="central">C</text>
+            <text x="460" y="225" fill="#f5f2f6" font-size="22" font-weight="800" text-anchor="middle" dominant-baseline="central">C</text>
             <polygon points="506,142 582,142 652.8,300 529.6,300" fill="#7c2e8c" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
-            <text x="567.6" y="225" fill="#f5f2f6" font-size="27" font-weight="800" text-anchor="middle" dominant-baseline="central">D</text>
+            <text x="567.6" y="225" fill="#f5f2f6" font-size="22" font-weight="800" text-anchor="middle" dominant-baseline="central">D</text>
             <polygon points="590,142 666,142 784,300 660.8,300" fill="#7c2e8c" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
-            <text x="675.2" y="225" fill="#f5f2f6" font-size="27" font-weight="800" text-anchor="middle" dominant-baseline="central">E</text>
+            <text x="675.2" y="225" fill="#f5f2f6" font-size="22" font-weight="800" text-anchor="middle" dominant-baseline="central">E</text>
             <rect x="418" y="300" width="84" height="20" rx="3" fill="#c9c3cf"/>
-            <text x="460" y="310" fill="#2a2430" font-size="10" font-weight="700" text-anchor="middle" dominant-baseline="central">CONSOLE</text>
-            <text x="800" y="222" fill="#cfc8d4" font-size="22" font-weight="700" text-anchor="middle" dominant-baseline="central">1층</text>
-            <text x="800" y="452" fill="#cfc8d4" font-size="22" font-weight="700" text-anchor="middle" dominant-baseline="central">2층</text>
-            <polygon points="218,372 308.4,372 273.1,462 159.2,462" fill="#21406f" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
-            <polygon points="159.2,462 273.1,462 249.6,522 120,522" fill="#238040" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
-            <text x="224" y="415" fill="#f5f2f6" font-size="24" font-weight="800" text-anchor="middle" dominant-baseline="central">A</text>
-            <polygon points="316.4,372 406.8,372 395,462 281.1,462" fill="#21406f" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
-            <polygon points="281.1,462 395,462 387.2,522 257.6,522" fill="#238040" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
-            <text x="342" y="415" fill="#f5f2f6" font-size="24" font-weight="800" text-anchor="middle" dominant-baseline="central">B</text>
-            <polygon points="414.8,372 505.2,372 517,462 403,462" fill="#21406f" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
-            <polygon points="403,462 517,462 524.8,522 395.2,522" fill="#238040" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
-            <text x="460" y="415" fill="#f5f2f6" font-size="24" font-weight="800" text-anchor="middle" dominant-baseline="central">C</text>
-            <polygon points="513.2,372 603.6,372 638.9,462 525,462" fill="#21406f" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
-            <polygon points="525,462 638.9,462 662.4,522 532.8,522" fill="#238040" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
-            <text x="578" y="415" fill="#f5f2f6" font-size="24" font-weight="800" text-anchor="middle" dominant-baseline="central">D</text>
-            <polygon points="611.6,372 702,372 760.8,462 646.9,462" fill="#21406f" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
-            <polygon points="646.9,462 760.8,462 800,522 670.4,522" fill="#238040" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
-            <text x="696" y="415" fill="#f5f2f6" font-size="24" font-weight="800" text-anchor="middle" dominant-baseline="central">E</text>
+            <text x="460" y="310" fill="#2a2430" font-size="9" font-weight="700" text-anchor="middle" dominant-baseline="central">CONSOLE</text>
+            <text x="800" y="222" fill="#cfc8d4" font-size="18" font-weight="700" text-anchor="middle" dominant-baseline="central">1층</text>
+            <text x="800" y="452" fill="#cfc8d4" font-size="18" font-weight="700" text-anchor="middle" dominant-baseline="central">2층</text>
+            <polygon points="218,372 308.4,372 273.12,462 159.2,462" fill="#21406f" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
+            <polygon points="159.2,462 273.12,462 249.6,522 120,522" fill="#238040" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
+            <text x="224" y="415" fill="#f5f2f6" font-size="22" font-weight="800" text-anchor="middle" dominant-baseline="central">A</text>
+            <polygon points="316.4,372 406.8,372 395.04,462 281.12,462" fill="#21406f" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
+            <polygon points="281.12,462 395.04,462 387.2,522 257.6,522" fill="#238040" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
+            <text x="342" y="415" fill="#f5f2f6" font-size="22" font-weight="800" text-anchor="middle" dominant-baseline="central">B</text>
+            <polygon points="414.8,372 505.2,372 516.96,462 403.04,462" fill="#21406f" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
+            <polygon points="403.04,462 516.96,462 524.8,522 395.2,522" fill="#238040" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
+            <text x="460" y="415" fill="#f5f2f6" font-size="22" font-weight="800" text-anchor="middle" dominant-baseline="central">C</text>
+            <polygon points="513.2,372 603.6,372 638.88,462 524.96,462" fill="#21406f" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
+            <polygon points="524.96,462 638.88,462 662.4,522 532.8,522" fill="#238040" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
+            <text x="578" y="415" fill="#f5f2f6" font-size="22" font-weight="800" text-anchor="middle" dominant-baseline="central">D</text>
+            <polygon points="611.6,372 702,372 760.8,462 646.88,462" fill="#21406f" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
+            <polygon points="646.88,462 760.8,462 800,522 670.4,522" fill="#238040" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
+            <text x="696" y="415" fill="#f5f2f6" font-size="22" font-weight="800" text-anchor="middle" dominant-baseline="central">E</text>
             <rect x="70" y="392" width="44" height="40" rx="10" fill="#21406f" stroke="#0d0b10" stroke-width="3"/>
-            <text x="92" y="412" fill="#f5f2f6" font-size="17" font-weight="700" text-anchor="middle" dominant-baseline="central">A</text>
+            <text x="92" y="412" fill="#f5f2f6" font-size="15" font-weight="700" text-anchor="middle" dominant-baseline="central">A</text>
             <rect x="806" y="392" width="44" height="40" rx="10" fill="#21406f" stroke="#0d0b10" stroke-width="3"/>
-            <text x="828" y="412" fill="#f5f2f6" font-size="17" font-weight="700" text-anchor="middle" dominant-baseline="central">E</text>
+            <text x="828" y="412" fill="#f5f2f6" font-size="15" font-weight="700" text-anchor="middle" dominant-baseline="central">E</text>
             <rect x="262" y="150" width="30" height="14" rx="4" fill="#e79bb3" stroke="#0d0b10" stroke-width="2"/>
             <rect x="628" y="150" width="30" height="14" rx="4" fill="#e79bb3" stroke="#0d0b10" stroke-width="2"/>
             <rect x="360" y="278" width="30" height="14" rx="4" fill="#e79bb3" stroke="#0d0b10" stroke-width="2"/>
             <rect x="548" y="278" width="30" height="14" rx="4" fill="#e79bb3" stroke="#0d0b10" stroke-width="2"/>
-            <rect x="150" y="580" width="26" height="26" rx="5" fill="#7c2e8c"/>
-            <text x="184" y="594" fill="#f5f2f6" font-size="19" font-weight="800" dominant-baseline="central">R석</text>
-            <rect x="300" y="580" width="26" height="26" rx="5" fill="#21406f"/>
-            <text x="334" y="594" fill="#f5f2f6" font-size="19" font-weight="800" dominant-baseline="central">S석</text>
-            <rect x="450" y="580" width="26" height="26" rx="5" fill="#238040"/>
-            <text x="484" y="594" fill="#f5f2f6" font-size="19" font-weight="800" dominant-baseline="central">A석</text>
-            <rect x="600" y="580" width="26" height="26" rx="5" fill="#e79bb3"/>
-            <text x="634" y="594" fill="#f5f2f6" font-size="19" font-weight="800" dominant-baseline="central">장애인석</text>
-          </svg>
+            <rect x="176" y="582" width="22" height="22" rx="5" fill="#7c2e8c"/>
+            <text x="206" y="594" fill="#f5f2f6" font-size="16" font-weight="800" dominant-baseline="central">R석</text>
+            <rect x="326" y="582" width="22" height="22" rx="5" fill="#21406f"/>
+            <text x="356" y="594" fill="#f5f2f6" font-size="16" font-weight="800" dominant-baseline="central">S석</text>
+            <rect x="476" y="582" width="22" height="22" rx="5" fill="#238040"/>
+            <text x="506" y="594" fill="#f5f2f6" font-size="16" font-weight="800" dominant-baseline="central">A석</text>
+            <rect x="626" y="582" width="22" height="22" rx="5" fill="#e79bb3"/>
+            <text x="656" y="594" fill="#f5f2f6" font-size="16" font-weight="800" dominant-baseline="central">장애인석</text>
+            </svg>
           <figcaption>좌석 배치도 · 색상은 좌석 등급을 나타냅니다. <b style="color:#e79bb3">분홍색은 장애인석</b>입니다.</figcaption>
         </figure>
 
@@ -213,7 +196,6 @@
       <div class="container">
         <div class="section__head" data-reveal>
           <p class="eyebrow">오시는 길</p>
-          <h2 class="section__title">공연장 안내</h2>
         </div>
 
         <div class="location__grid">
@@ -246,7 +228,6 @@
         <div class="section__head" data-reveal>
           <p class="eyebrow">관람 안내</p>
           <h2 class="section__title">자주 묻는 질문</h2>
-          <p class="section__lead">관람 전 꼭 확인해 주세요. 세부 정책은 예매처 안내를 따릅니다.</p>
         </div>
 
         <div class="faq" data-reveal>
@@ -312,8 +293,9 @@
     </div>
     <div class="mobilecta__actions">
       <button class="btn" type="button" data-book-open>온라인예매</button>
-      <a class="btn btn--ghost mobilecta__icon" href="tel:15441555" aria-label="전화예매">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.15.38 2.36.58 3.6.58a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.3a1 1 0 0 1 1 1c0 1.25.2 2.46.58 3.6a1 1 0 0 1-.25 1Z"/></svg>
+      <a class="btn btn--ghost mobilecta__icon mobilecta__tel" href="tel:15441555" aria-label="전화예매 1544-1555">
+        <svg class="tel-label" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.15.38 2.36.58 3.6.58a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.3a1 1 0 0 1 1 1c0 1.25.2 2.46.58 3.6a1 1 0 0 1-.25 1Z"/></svg>
+        <span class="tel-num">1544-1555</span>
       </a>
       <button class="btn btn--ghost mobilecta__icon" type="button" data-share aria-label="공유하기">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
