@@ -822,3 +822,25 @@ p { text-wrap: pretty; }
   color: var(--ink); font-size: var(--step-1); font-weight: 700;
   font-variant-numeric: tabular-nums; letter-spacing: 0.01em; line-height: 1.5;
 }
+
+/* ---------- Sticky booking bar: show once hero CTA scrolls away (all viewports) ---------- */
+.mobilecta { display: flex; transform: translateY(130%); transition: transform var(--dur-1) var(--ease-out-quint); }
+.mobilecta.is-visible { transform: none; }
+@media (prefers-reduced-motion: reduce) { .mobilecta { transition: none; } }
+
+/* ---------- Share toast ---------- */
+.toast {
+  position: fixed; left: 50%; bottom: 6rem; transform: translateX(-50%) translateY(10px);
+  z-index: var(--z-overlay);
+  background: var(--surface-2); color: var(--ink);
+  border: 1px solid var(--line-strong); border-radius: var(--r-pill);
+  padding: 0.7em 1.3em; font-size: var(--step--1); font-weight: 700;
+  box-shadow: 0 20px 50px -20px oklch(0 0 0 / 0.8);
+  opacity: 0; transition: opacity 0.3s var(--ease-out-quart), transform 0.3s var(--ease-out-quint);
+  pointer-events: none;
+}
+.toast.is-on { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ---------- Hero title single line (dedup) ---------- */
+.hero--poster { }
+.hero__title .name + .show { display: none; }

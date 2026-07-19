@@ -222,6 +222,54 @@
     });
   }
 
+  /* ================= Toast ================= */
+  function toast(msg) {
+    var t = document.createElement("div");
+    t.className = "toast";
+    t.textContent = msg;
+    document.body.appendChild(t);
+    requestAnimationFrame(function () { t.classList.add("is-on"); });
+    setTimeout(function () {
+      t.classList.remove("is-on");
+      setTimeout(function () { t.remove(); }, 320);
+    }, 2000);
+  }
+
+  /* ================= 공유하기 ================= */
+  function initShare() {
+    document.addEventListener("click", function (e) {
+      var t = e.target.closest("[data-share]");
+      if (!t) return;
+      e.preventDefault();
+      var url = location.href;
+      var data = {
+        title: "슈퍼디바 적우 콘서트 - 대구",
+        text: "슈퍼디바 적우 콘서트 - 대구 · 2026.08.22 (토) 오후 4시 · 영남대 천마아트센터",
+        url: url
+      };
+      if (navigator.share) { navigator.share(data).catch(function () {}); return; }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(
+          function () { toast("링크가 복사되었습니다"); },
+          function () { window.prompt("아래 링크를 복사하세요", url); }
+        );
+        return;
+      }
+      window.prompt("아래 링크를 복사하세요", url);
+    });
+  }
+
+  /* ================= 하단 고정 예매 바 (히어로 CTA가 화면 밖으로 나가면 노출) ================= */
+  function initStickyCta() {
+    var bar = document.querySelector(".mobilecta");
+    var anchor = document.querySelector(".hero__cta");
+    if (!bar || !anchor) return;
+    if (!("IntersectionObserver" in window)) { bar.classList.add("is-visible"); return; }
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { bar.classList.toggle("is-visible", !e.isIntersecting); });
+    }, { threshold: 0 }).observe(anchor);
+  }
+
   /* ================= Boot ================= */
   function boot() {
     initHero();
@@ -230,6 +278,8 @@
     initCountdown();
     initRain();
     initBooking();
+    initShare();
+    initStickyCta();
   }
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", boot);
