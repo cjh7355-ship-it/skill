@@ -236,6 +236,22 @@
   }
 
   /* ================= 공유하기 ================= */
+  function legacyCopy(text) {
+    try {
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "fixed";
+      ta.style.top = "-1000px";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      var ok = document.execCommand("copy");
+      ta.remove();
+      return ok;
+    } catch (e) { return false; }
+  }
+
   function initShare() {
     document.addEventListener("click", function (e) {
       var t = e.target.closest("[data-share]");
@@ -247,15 +263,25 @@
         text: "슈퍼디바 적우 콘서트 - 대구 · 2026.08.22 (토) 오후 4시 · 영남대 천마아트센터",
         url: url
       };
-      if (navigator.share) { navigator.share(data).catch(function () {}); return; }
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(url).then(
-          function () { toast("링크가 복사되었습니다"); },
-          function () { window.prompt("아래 링크를 복사하세요", url); }
-        );
+      // 1) Web Share API (모바일). 사용 불가·차단(임베드) 시 복사로 폴백.
+      if (navigator.share) {
+        var p = navigator.share(data);
+        if (p && p.catch) { p.catch(function () { copyLink(); }); }
         return;
       }
-      window.prompt("아래 링크를 복사하세요", url);
+      copyLink();
+
+      function copyLink() {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(url).then(
+            function () { toast("링크가 복사되었습니다"); },
+            function () { if (!legacyCopy(url)) window.prompt("아래 링크를 복사하세요", url); else toast("링크가 복사되었습니다"); }
+          );
+          return;
+        }
+        if (legacyCopy(url)) { toast("링크가 복사되었습니다"); return; }
+        window.prompt("아래 링크를 복사하세요", url);
+      }
     });
   }
 

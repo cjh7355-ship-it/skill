@@ -853,3 +853,13 @@ p { text-wrap: pretty; }
   box-shadow: 0 30px 80px -40px oklch(0 0 0 / 0.9), 0 0 52px -18px oklch(0.64 0.19 26 / 0.35);
 }
 .hero__banner img { width: 100%; height: auto; display: block; }
+
+/* ---------- Sticky bar action buttons ---------- */
+.mobilecta__actions { display: flex; align-items: center; gap: 0.5rem; flex: none; }
+.mobilecta__icon { padding: 0; width: 46px; min-width: 46px; min-height: 46px; }
+.mobilecta__icon svg { width: 20px; height: 20px; }
+@media (max-width: 560px) {
+  .mobilecta__info { display: none; }
+  .mobilecta__actions { flex: 1; }
+  .mobilecta__actions .btn:first-child { flex: 1; }
+}
