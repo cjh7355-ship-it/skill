@@ -656,10 +656,10 @@ p { text-wrap: pretty; }
 .footer__social svg { width: 18px; height: 18px; }
 .footer__note { margin-top: 1.5rem; color: var(--ink-muted); font-size: 0.78rem; opacity: 0.8; }
 
-/* ---------- Mobile sticky CTA ---------- */
+/* ---------- Sticky booking bar (always fixed, all viewports) ---------- */
 .mobilecta {
   position: fixed; inset: auto 0 0 0; z-index: var(--z-mobilecta);
-  display: none;
+  display: flex;
   padding: 0.8rem var(--gutter) calc(0.8rem + env(safe-area-inset-bottom));
   background: oklch(0.100 0.014 60 / 0.92);
   backdrop-filter: blur(14px);
@@ -670,7 +670,6 @@ p { text-wrap: pretty; }
 .mobilecta__info b { color: var(--ink); font-size: var(--step-0); font-family: var(--font); }
 .mobilecta__info span { color: var(--ink-muted); font-size: 0.72rem; }
 .mobilecta .btn { flex: none; }
-@media (max-width: 760px) { .mobilecta { display: flex; } }
 
 /* ---------- Reveal animation ----------
    Content is visible by DEFAULT. Initial-hidden state only applies once JS
@@ -821,12 +820,12 @@ p { text-wrap: pretty; }
   margin: 1.3rem auto 0; max-width: 40ch;
   color: var(--ink); font-size: var(--step-1); font-weight: 700;
   font-variant-numeric: tabular-nums; letter-spacing: 0.01em; line-height: 1.5;
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: 0.3em 0.6em;
 }
+.hero__price-item { white-space: nowrap; }
+.hero__price-sep { opacity: 0.45; }
 
 /* ---------- Sticky booking bar: show once hero CTA scrolls away (all viewports) ---------- */
-.mobilecta { display: flex; transform: translateY(130%); transition: transform var(--dur-1) var(--ease-out-quint); }
-.mobilecta.is-visible { transform: none; }
-@media (prefers-reduced-motion: reduce) { .mobilecta { transition: none; } }
 
 /* ---------- Share toast ---------- */
 .toast {

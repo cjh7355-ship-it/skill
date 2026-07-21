@@ -310,17 +310,6 @@
     });
   }
 
-  /* ================= 하단 고정 예매 바 (히어로 CTA가 화면 밖으로 나가면 노출) ================= */
-  function initStickyCta() {
-    var bar = document.querySelector(".mobilecta");
-    var anchor = document.querySelector(".hero__cta");
-    if (!bar || !anchor) return;
-    if (!("IntersectionObserver" in window)) { bar.classList.add("is-visible"); return; }
-    new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) { bar.classList.toggle("is-visible", !e.isIntersecting); });
-    }, { threshold: 0 }).observe(anchor);
-  }
-
   /* ================= Boot ================= */
   function boot() {
     initHero();
@@ -331,7 +320,6 @@
     initBooking();
     initKakao();
     initShare();
-    initStickyCta();
   }
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", boot);
