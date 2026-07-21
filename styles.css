@@ -960,7 +960,8 @@ p { text-wrap: pretty; }
 /* 내비/섹션 헤드/FAQ 중앙 정렬 → 좌우 대칭 */
 .nav { justify-content: center; }
 .section__head { margin-inline: auto; text-align: center; }
-.section__head .eyebrow { justify-content: center; }
+.section__head .eyebrow { justify-content: center; font-size: var(--step-2); font-weight: 800; }
+.section__head .eyebrow::before { display: none; }
 .faq { margin-inline: auto; }
 
 /* 폰트 균형: FAQ 제목은 히어로 타이틀보다 작게, 질문/푸터 본문을 상단과 맞춤 */
