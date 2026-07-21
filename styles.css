@@ -733,14 +733,16 @@ p { text-wrap: pretty; }
 }
 .guest { text-align: center; }
 .guest__photo {
-  aspect-ratio: 1 / 1; border-radius: 50%; background-size: cover; background-position: center;
+  width: clamp(110px, 22vw, 170px); aspect-ratio: 1 / 1; border-radius: 50%;
+  background-size: cover; background-position: center;
   border: 1px solid var(--line); margin: 0 auto 1rem;
   box-shadow: 0 20px 40px -24px oklch(0 0 0 / 0.6);
 }
 .guest__name { font-weight: 800; font-size: var(--step-1); color: var(--ink); }
 .guest__desc { margin-top: 0.2rem; color: var(--ink-muted); font-size: var(--step--1); }
 @media (max-width: 640px) {
-  .guests__grid { grid-template-columns: 1fr; max-width: 320px; }
+  .guests__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 380px; gap: 0.8rem; }
+  .guest__photo { width: clamp(80px, 26vw, 110px); }
 }
 
 /* ---------- Tickets: one seat per row ---------- */
@@ -775,6 +777,25 @@ p { text-wrap: pretty; }
 .bizinfo em { font-style: normal; opacity: 0.7; }
 
 /* ---------- Reservation modal ---------- */
+/* ---------- Share modal ---------- */
+.share__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.9rem 0.6rem; }
+.share__item {
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+  font-size: var(--step--1); color: var(--ink-soft); font-weight: 600; text-align: center;
+}
+.share__icon {
+  width: 54px; height: 54px; border-radius: 50%; display: grid; place-items: center;
+  transition: transform var(--dur-1) var(--ease-out-quint);
+}
+.share__item:hover .share__icon { transform: translateY(-3px); }
+.share__icon svg { width: 26px; height: 26px; }
+.share__icon--kakao { background: #FEE500; color: #191600; }
+.share__icon--band { background: #00C242; color: #fff; }
+.share__icon--facebook { background: #1877F2; color: #fff; }
+.share__icon--x { background: #000; color: #fff; }
+.share__icon--line { background: #06C755; color: #fff; }
+.share__icon--copy { background: var(--surface-2, oklch(0.9 0.01 80)); color: var(--ink); border: 1px solid var(--line-strong); }
+
 .modal { position: fixed; inset: 0; z-index: var(--z-overlay); display: grid; place-items: center; padding: 1.2rem; opacity: 0; transition: opacity var(--dur-1) var(--ease-out-quart); }
 .modal.is-open { opacity: 1; }
 .modal[hidden] { display: none; }
@@ -837,17 +858,6 @@ p { text-wrap: pretty; }
 .tiers--info .tier:hover { transform: none; border-color: var(--line); border-left-color: var(--grade, var(--line)); }
 .tiers--info .tier__grade { color: var(--ink); }
 
-/* ---------- Hero seat prices (replaces sub line) ---------- */
-.hero__prices {
-  margin: 1.3rem auto 0; max-width: 40ch;
-  color: var(--ink); font-size: var(--step-1); font-weight: 700;
-  font-variant-numeric: tabular-nums; letter-spacing: 0.01em; line-height: 1.5;
-  display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: 0.3em 0.6em;
-}
-.hero__price-item { white-space: nowrap; }
-.hero__price-sep { opacity: 0.45; }
-/* PC: 좌석안내 섹션과 가격 정보가 중복되므로 히어로에서는 숨김 */
-@media (min-width: 900px) { .hero__prices { display: none; } }
 
 /* ---------- Sticky booking bar: show once hero CTA scrolls away (all viewports) ---------- */
 
@@ -1050,4 +1060,3 @@ p { text-wrap: pretty; }
 /* 정보 블록 세로 리듬 정돈 */
 .countdown { margin-top: clamp(1rem, 2.5vw, 1.5rem); }
 .hero__meta { margin-top: clamp(1.1rem, 2.5vw, 1.6rem); }
-.hero__prices { margin-top: clamp(0.9rem, 2vw, 1.3rem); }

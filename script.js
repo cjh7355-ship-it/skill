@@ -275,38 +275,78 @@
     } catch (e) { return false; }
   }
 
-  function initShare() {
-    document.addEventListener("click", function (e) {
-      var t = e.target.closest("[data-share]");
-      if (!t) return;
-      e.preventDefault();
-      var url = location.href;
-      // 1순위: 카카오톡 공유 (SDK+키 준비 시)
-      if (kakaoShare(url)) return;
-      var data = {
-        title: "슈퍼디바 적우 콘서트 - 대구",
-        text: "슈퍼디바 적우 콘서트 - 대구 · 2026.08.22 (토) 오후 4시 · 영남대 천마아트센터",
-        url: url
-      };
-      // 1) Web Share API (모바일). 사용 불가·차단(임베드) 시 복사로 폴백.
-      if (navigator.share) {
-        var p = navigator.share(data);
-        if (p && p.catch) { p.catch(function () { copyLink(); }); }
-        return;
-      }
-      copyLink();
+  function copyLink(url) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(
+        function () { toast("링크가 복사되었습니다"); },
+        function () { if (!legacyCopy(url)) window.prompt("아래 링크를 복사하세요", url); else toast("링크가 복사되었습니다"); }
+      );
+      return;
+    }
+    if (legacyCopy(url)) { toast("링크가 복사되었습니다"); return; }
+    window.prompt("아래 링크를 복사하세요", url);
+  }
 
-      function copyLink() {
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(url).then(
-            function () { toast("링크가 복사되었습니다"); },
-            function () { if (!legacyCopy(url)) window.prompt("아래 링크를 복사하세요", url); else toast("링크가 복사되었습니다"); }
-          );
-          return;
-        }
-        if (legacyCopy(url)) { toast("링크가 복사되었습니다"); return; }
-        window.prompt("아래 링크를 복사하세요", url);
+  function initShare() {
+    var modal = document.getElementById("shareModal");
+    if (!modal) return;
+    var shareText = "슈퍼디바 적우 콘서트 - 대구 · 2026.08.22 (토) 오후 4시 · 영남대 천마아트센터";
+    var lastFocus = null;
+    function open() {
+      lastFocus = document.activeElement;
+      modal.hidden = false;
+      requestAnimationFrame(function () { modal.classList.add("is-open"); });
+      document.body.style.overflow = "hidden";
+      var first = modal.querySelector(".share__item, .modal__close");
+      if (first) first.focus();
+    }
+    function close() {
+      modal.classList.remove("is-open");
+      document.body.style.overflow = "";
+      var done = function () {
+        modal.hidden = true;
+        modal.removeEventListener("transitionend", done);
+      };
+      modal.addEventListener("transitionend", done);
+      setTimeout(function () { if (!modal.classList.contains("is-open")) modal.hidden = true; }, 400);
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+
+    function shareTo(channel, url) {
+      switch (channel) {
+        case "kakao":
+          if (!kakaoShare(url)) toast("카카오톡 공유 준비 중입니다");
+          break;
+        case "band":
+          window.open("https://band.us/plugin/share?body=" + encodeURIComponent(shareText) + "&route=" + encodeURIComponent(url), "_blank", "noopener,noreferrer");
+          break;
+        case "facebook":
+          window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(url), "_blank", "noopener,noreferrer");
+          break;
+        case "x":
+          window.open("https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareText) + "&url=" + encodeURIComponent(url), "_blank", "noopener,noreferrer");
+          break;
+        case "line":
+          window.open("https://social-plugins.line.me/lineit/share?url=" + encodeURIComponent(url), "_blank", "noopener,noreferrer");
+          break;
+        case "copy":
+          copyLink(url);
+          break;
       }
+    }
+
+    document.addEventListener("click", function (e) {
+      if (e.target.closest("[data-share]")) { e.preventDefault(); open(); return; }
+      if (e.target.closest("[data-share-close]")) { e.preventDefault(); close(); return; }
+      var chBtn = e.target.closest("[data-share-channel]");
+      if (chBtn) {
+        e.preventDefault();
+        shareTo(chBtn.getAttribute("data-share-channel"), location.href);
+        close();
+      }
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !modal.hidden) close();
     });
   }
 
