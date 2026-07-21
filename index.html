@@ -29,6 +29,7 @@
   <nav class="nav" id="nav" aria-label="주요">
     <div class="nav__menu-links">
       <div class="nav__links">
+        <a href="#guests">게스트</a>
         <a href="#tickets">좌석안내</a>
         <a href="#location">오시는 길</a>
         <a href="#notice">관람 안내</a>
@@ -96,6 +97,33 @@
   </header>
 
   <main>
+    <!-- ============ GUESTS (게스트) ============ -->
+    <section class="section band" id="guests">
+      <div class="container">
+        <div class="section__head" data-reveal>
+          <p class="eyebrow">게스트</p>
+        </div>
+        <p class="guests__intro" data-reveal>미스트롯4 왕년부가 특별 게스트로 함께합니다.</p>
+        <ul class="guests__grid" data-reveal-stagger>
+          <li class="guest">
+            <div class="guest__photo" style="background-image:url(assets/guest-anjina.jpg)" role="img" aria-label="안진아"></div>
+            <p class="guest__name">안진아</p>
+            <p class="guest__desc">써니힐</p>
+          </li>
+          <li class="guest">
+            <div class="guest__photo" style="background-image:url(assets/guest-yumi.jpg)" role="img" aria-label="유미"></div>
+            <p class="guest__name">유미</p>
+            <p class="guest__desc">사랑은 언제 목마르다</p>
+          </li>
+          <li class="guest">
+            <div class="guest__photo" style="background-image:url(assets/guest-jeongyugyeong.jpg)" role="img" aria-label="정유경"></div>
+            <p class="guest__name">정유경</p>
+            <p class="guest__desc">스톰</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
     <!-- ============ TICKETS (좌석 안내) ============ -->
     <section class="section" id="tickets">
       <div class="container">
@@ -106,54 +134,54 @@
         <figure class="seatmap" data-reveal>
             <svg class="seatmap__svg" viewBox="0 0 920 650" role="img" aria-label="공연장 좌석 배치도: 무대 기준 1층은 R석, 2층은 S석과 후면 A석, 분홍 표시는 장애인석입니다." xmlns="http://www.w3.org/2000/svg">
             <rect x="300" y="30" width="320" height="42" rx="6" fill="#e9e6ec"/>
-            <text x="460" y="52" fill="#1b1520" font-size="24" font-weight="800" text-anchor="middle" dominant-baseline="central">STAGE</text>
+            <text x="460" y="52" fill="#1b1520" font-size="28" font-weight="800" text-anchor="middle" dominant-baseline="central">STAGE</text>
             <polygon points="330,86 590,86 612,128 308,128" fill="#7c2e8c" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
-            <text x="460" y="108" fill="#f5f2f6" font-size="17" font-weight="700" text-anchor="middle" dominant-baseline="central">OP</text>
+            <text x="460" y="108" fill="#f5f2f6" font-size="20" font-weight="700" text-anchor="middle" dominant-baseline="central">OP</text>
             <polygon points="254,142 330,142 259.2,300 136,300" fill="#7c2e8c" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
-            <text x="244.8" y="225" fill="#f5f2f6" font-size="27" font-weight="800" text-anchor="middle" dominant-baseline="central">A</text>
+            <text x="244.8" y="225" fill="#f5f2f6" font-size="31" font-weight="800" text-anchor="middle" dominant-baseline="central">A</text>
             <polygon points="338,142 414,142 390.4,300 267.2,300" fill="#7c2e8c" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
-            <text x="352.4" y="225" fill="#f5f2f6" font-size="27" font-weight="800" text-anchor="middle" dominant-baseline="central">B</text>
+            <text x="352.4" y="225" fill="#f5f2f6" font-size="31" font-weight="800" text-anchor="middle" dominant-baseline="central">B</text>
             <polygon points="422,142 498,142 521.6,300 398.4,300" fill="#7c2e8c" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
-            <text x="460" y="225" fill="#f5f2f6" font-size="27" font-weight="800" text-anchor="middle" dominant-baseline="central">C</text>
+            <text x="460" y="225" fill="#f5f2f6" font-size="31" font-weight="800" text-anchor="middle" dominant-baseline="central">C</text>
             <polygon points="506,142 582,142 652.8,300 529.6,300" fill="#7c2e8c" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
-            <text x="567.6" y="225" fill="#f5f2f6" font-size="27" font-weight="800" text-anchor="middle" dominant-baseline="central">D</text>
+            <text x="567.6" y="225" fill="#f5f2f6" font-size="31" font-weight="800" text-anchor="middle" dominant-baseline="central">D</text>
             <polygon points="590,142 666,142 784,300 660.8,300" fill="#7c2e8c" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
-            <text x="675.2" y="225" fill="#f5f2f6" font-size="27" font-weight="800" text-anchor="middle" dominant-baseline="central">E</text>
+            <text x="675.2" y="225" fill="#f5f2f6" font-size="31" font-weight="800" text-anchor="middle" dominant-baseline="central">E</text>
             <rect x="408" y="296" width="104" height="26" rx="4" fill="#c9c3cf"/>
-            <text x="460" y="309" fill="#2a2430" font-size="12" font-weight="700" text-anchor="middle" dominant-baseline="central">CONSOLE</text>
-            <text x="800" y="222" fill="#cfc8d4" font-size="21" font-weight="700" text-anchor="middle" dominant-baseline="central">1층</text>
-            <text x="800" y="452" fill="#cfc8d4" font-size="21" font-weight="700" text-anchor="middle" dominant-baseline="central">2층</text>
+            <text x="460" y="309" fill="#2a2430" font-size="14" font-weight="700" text-anchor="middle" dominant-baseline="central">CONSOLE</text>
+            <text x="800" y="222" fill="#cfc8d4" font-size="24" font-weight="700" text-anchor="middle" dominant-baseline="central">1층</text>
+            <text x="800" y="452" fill="#cfc8d4" font-size="24" font-weight="700" text-anchor="middle" dominant-baseline="central">2층</text>
             <polygon points="218,372 308.4,372 273.12,462 159.2,462" fill="#21406f" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
             <polygon points="159.2,462 273.12,462 249.6,522 120,522" fill="#238040" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
-            <text x="224" y="415" fill="#f5f2f6" font-size="27" font-weight="800" text-anchor="middle" dominant-baseline="central">A</text>
+            <text x="224" y="415" fill="#f5f2f6" font-size="31" font-weight="800" text-anchor="middle" dominant-baseline="central">A</text>
             <polygon points="316.4,372 406.8,372 395.04,462 281.12,462" fill="#21406f" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
             <polygon points="281.12,462 395.04,462 387.2,522 257.6,522" fill="#238040" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
-            <text x="342" y="415" fill="#f5f2f6" font-size="27" font-weight="800" text-anchor="middle" dominant-baseline="central">B</text>
+            <text x="342" y="415" fill="#f5f2f6" font-size="31" font-weight="800" text-anchor="middle" dominant-baseline="central">B</text>
             <polygon points="414.8,372 505.2,372 516.96,462 403.04,462" fill="#21406f" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
             <polygon points="403.04,462 516.96,462 524.8,522 395.2,522" fill="#238040" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
-            <text x="460" y="415" fill="#f5f2f6" font-size="27" font-weight="800" text-anchor="middle" dominant-baseline="central">C</text>
+            <text x="460" y="415" fill="#f5f2f6" font-size="31" font-weight="800" text-anchor="middle" dominant-baseline="central">C</text>
             <polygon points="513.2,372 603.6,372 638.88,462 524.96,462" fill="#21406f" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
             <polygon points="524.96,462 638.88,462 662.4,522 532.8,522" fill="#238040" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
-            <text x="578" y="415" fill="#f5f2f6" font-size="27" font-weight="800" text-anchor="middle" dominant-baseline="central">D</text>
+            <text x="578" y="415" fill="#f5f2f6" font-size="31" font-weight="800" text-anchor="middle" dominant-baseline="central">D</text>
             <polygon points="611.6,372 702,372 760.8,462 646.88,462" fill="#21406f" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
             <polygon points="646.88,462 760.8,462 800,522 670.4,522" fill="#238040" stroke="#0d0b10" stroke-width="3" stroke-linejoin="round"/>
-            <text x="696" y="415" fill="#f5f2f6" font-size="27" font-weight="800" text-anchor="middle" dominant-baseline="central">E</text>
+            <text x="696" y="415" fill="#f5f2f6" font-size="31" font-weight="800" text-anchor="middle" dominant-baseline="central">E</text>
             <rect x="70" y="392" width="44" height="40" rx="10" fill="#21406f" stroke="#0d0b10" stroke-width="3"/>
-            <text x="92" y="412" fill="#f5f2f6" font-size="18" font-weight="700" text-anchor="middle" dominant-baseline="central">A</text>
+            <text x="92" y="412" fill="#f5f2f6" font-size="21" font-weight="700" text-anchor="middle" dominant-baseline="central">A</text>
             <rect x="806" y="392" width="44" height="40" rx="10" fill="#21406f" stroke="#0d0b10" stroke-width="3"/>
-            <text x="828" y="412" fill="#f5f2f6" font-size="18" font-weight="700" text-anchor="middle" dominant-baseline="central">E</text>
+            <text x="828" y="412" fill="#f5f2f6" font-size="21" font-weight="700" text-anchor="middle" dominant-baseline="central">E</text>
             <rect x="262" y="150" width="30" height="14" rx="4" fill="#e79bb3" stroke="#0d0b10" stroke-width="2"/>
             <rect x="628" y="150" width="30" height="14" rx="4" fill="#e79bb3" stroke="#0d0b10" stroke-width="2"/>
             <rect x="360" y="278" width="30" height="14" rx="4" fill="#e79bb3" stroke="#0d0b10" stroke-width="2"/>
             <rect x="548" y="278" width="30" height="14" rx="4" fill="#e79bb3" stroke="#0d0b10" stroke-width="2"/>
             <rect x="176" y="582" width="22" height="22" rx="5" fill="#7c2e8c"/>
-            <text x="206" y="594" fill="#f5f2f6" font-size="19" font-weight="800" dominant-baseline="central">R석</text>
+            <text x="206" y="594" fill="#f5f2f6" font-size="22" font-weight="800" dominant-baseline="central">R석</text>
             <rect x="326" y="582" width="22" height="22" rx="5" fill="#21406f"/>
-            <text x="356" y="594" fill="#f5f2f6" font-size="19" font-weight="800" dominant-baseline="central">S석</text>
+            <text x="356" y="594" fill="#f5f2f6" font-size="22" font-weight="800" dominant-baseline="central">S석</text>
             <rect x="476" y="582" width="22" height="22" rx="5" fill="#238040"/>
-            <text x="506" y="594" fill="#f5f2f6" font-size="19" font-weight="800" dominant-baseline="central">A석</text>
+            <text x="506" y="594" fill="#f5f2f6" font-size="22" font-weight="800" dominant-baseline="central">A석</text>
             <rect x="616" y="581" width="22" height="22" rx="5" fill="#e79bb3"/>
-            <text x="646" y="593" fill="#f5f2f6" font-size="19" font-weight="800" dominant-baseline="central">장애인석</text>
+            <text x="646" y="593" fill="#f5f2f6" font-size="22" font-weight="800" dominant-baseline="central">장애인석</text>
             </svg>
           <figcaption>좌석 배치도 · 색상은 좌석 등급을 나타냅니다. <b style="color:#e79bb3">분홍색은 장애인석</b>입니다.</figcaption>
         </figure>
@@ -264,10 +292,7 @@
         <span>대표 <em>조재호</em></span>
         <span>사업자등록번호 <em>563-59-00455</em></span>
         <span>주소 <em>인천광역시 서구 승학로 587, 3층 305-3호(검암동, 로얄프라자)</em></span>
-        <span>고객문의 <em>jjh7355@nate.com</em></span>
       </div>
-
-      <p class="footer__note">본 페이지는 공연 안내를 위한 랜딩페이지입니다. 예매·좌석 잔여 현황 등 실시간 정보는 예매처(NOL 티켓 · 예스24) 상세페이지 안내를 최종 기준으로 확인해 주세요. © 2026 하우커뮤니케이션.</p>
     </div>
   </footer>
 
