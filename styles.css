@@ -870,10 +870,18 @@ p { text-wrap: pretty; }
 }
 .hero__title-city { color: var(--gold); }
 .hero__poster {
-  position: relative; width: min(92vw, 600px); height: auto; margin: 0 auto;
-  aspect-ratio: 467 / 325; background-size: cover; background-position: center;
+  position: relative; width: min(92vw, 900px); height: auto; margin: 0 auto;
+  aspect-ratio: 467 / 325; background-image: url(assets/poster-banner.jpg); background-size: cover; background-position: center;
   border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--line);
   box-shadow: 0 30px 80px -40px oklch(0 0 0 / 0.9), 0 0 52px -18px oklch(0.64 0.19 26 / 0.35);
+}
+/* PC: 크롭된 배너 대신 세로형 풀 포스터를 사용 */
+@media (min-width: 900px) {
+  .hero__poster {
+    background-image: url(assets/poster-desktop.jpg);
+    aspect-ratio: 1100 / 1551;
+    width: auto; height: min(74svh, 760px);
+  }
 }
 .hero__poster::before {
   content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
@@ -978,8 +986,6 @@ p { text-wrap: pretty; }
 @media (max-width: 520px) { .hero__meta { font-size: 0.92rem; } }
 
 /* ---------- 여백 대칭 보정 ---------- */
-/* 모바일에서 포스터(92vw)가 컨테이너보다 넓어 우측으로 삐져나가던 것 → 컨테이너 폭에 맞춤 */
-.hero__poster { width: min(100%, 600px); }
 /* 최상단(내비 아래) 여백을 좌우 여백과 비슷하게 살짝 확보 */
 .hero { padding-top: clamp(4.3rem, 3.5rem + 1.4vw, 4.8rem); }
 
