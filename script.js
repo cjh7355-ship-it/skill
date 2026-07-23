@@ -222,6 +222,77 @@
     });
   }
 
+  /* ================= 문의(전화상담 요청) ================= */
+  /* 구글시트 연동: 시트에서 확장 프로그램 > Apps Script로 doPost 웹앱을 배포하고, 그 /exec URL로 교체 */
+  var INQUIRY_SHEET_WEBAPP_URL = "[GOOGLE_SHEET_WEBAPP_URL]";
+  function initInquiry() {
+    var modal = document.getElementById("inquiryModal");
+    if (!modal) return;
+    var form = document.getElementById("inquiryForm");
+    var phoneInput = document.getElementById("inquiryPhone");
+    var status = document.getElementById("inquiryStatus");
+    var lastFocus = null;
+    function open() {
+      lastFocus = document.activeElement;
+      if (status) { status.textContent = ""; status.className = "inquiry__status"; }
+      modal.hidden = false;
+      requestAnimationFrame(function () { modal.classList.add("is-open"); });
+      document.body.style.overflow = "hidden";
+      if (phoneInput) phoneInput.focus();
+    }
+    function close() {
+      modal.classList.remove("is-open");
+      document.body.style.overflow = "";
+      var done = function () {
+        modal.hidden = true;
+        modal.removeEventListener("transitionend", done);
+      };
+      modal.addEventListener("transitionend", done);
+      setTimeout(function () { if (!modal.classList.contains("is-open")) modal.hidden = true; }, 400);
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+    document.addEventListener("click", function (e) {
+      if (e.target.closest("[data-inquiry-open]")) { e.preventDefault(); open(); }
+      else if (e.target.closest("[data-inquiry-close]")) { e.preventDefault(); close(); }
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !modal.hidden) close();
+    });
+    if (form) {
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var phone = (phoneInput.value || "").trim();
+        if (!phone) return;
+        if (!INQUIRY_SHEET_WEBAPP_URL || INQUIRY_SHEET_WEBAPP_URL.charAt(0) === "[") {
+          status.textContent = "연동 준비 중입니다. 관리자에게 문의해 주세요.";
+          status.className = "inquiry__status is-error";
+          return;
+        }
+        var submitBtn = form.querySelector(".inquiry__submit");
+        if (submitBtn) submitBtn.disabled = true;
+        status.textContent = "전송 중...";
+        status.className = "inquiry__status";
+        var body = new URLSearchParams();
+        body.append("phone", phone);
+        body.append("page", "슈퍼디바 적우 콘서트 - 대구");
+        body.append("time", new Date().toISOString());
+        fetch(INQUIRY_SHEET_WEBAPP_URL, { method: "POST", mode: "no-cors", body: body })
+          .then(function () {
+            status.textContent = "접수되었습니다. 순차적으로 연락드리겠습니다.";
+            status.className = "inquiry__status is-ok";
+            form.reset();
+          })
+          .catch(function () {
+            status.textContent = "전송에 실패했습니다. 잠시 후 다시 시도해 주세요.";
+            status.className = "inquiry__status is-error";
+          })
+          .finally(function () {
+            if (submitBtn) submitBtn.disabled = false;
+          });
+      });
+    }
+  }
+
   /* ================= Toast ================= */
   function toast(msg) {
     var t = document.createElement("div");
@@ -235,9 +306,30 @@
     }, 2000);
   }
 
-  /* ================= 공유하기 ================= */
-  /* 카카오톡 공유 — developers.kakao.com JavaScript 키로 교체(+ 도메인 등록) */
-  var KAKAO_JS_KEY = "[KAKAO_JAVASCRIPT_APP_KEY]";
+  /* ================= 공유하기 / 카카오맵 ================= */
+  /* developers.kakao.com JavaScript 키 — 카카오톡 공유용 */
+  var KAKAO_JS_KEY = "2f35fbd996a378c15abcbe552844f156";
+  /* 카카오맵 전용 지도 키(+ 플랫폼 도메인 등록 필요) */
+  var KAKAO_MAP_JS_KEY = "9e653069a946c28fe6369fb6a44cfe8a";
+  var VENUE_LAT = 35.8280220; // 영남대학교 근사 좌표 — 지도 확인 후 천마아트센터 위치로 미세조정 필요
+  var VENUE_LNG = 128.7572223;
+  function initKakaoMap() {
+    var el = document.getElementById("kakaoMap");
+    if (!el || !KAKAO_MAP_JS_KEY || KAKAO_MAP_JS_KEY.charAt(0) === "[") return;
+    var script = document.createElement("script");
+    script.src = "https://dapi.kakao.com/v2/maps/sdk.js?appkey=" + KAKAO_MAP_JS_KEY + "&autoload=false";
+    script.onload = function () {
+      try {
+        window.kakao.maps.load(function () {
+          var center = new kakao.maps.LatLng(VENUE_LAT, VENUE_LNG);
+          el.innerHTML = "";
+          var map = new kakao.maps.Map(el, { center: center, level: 4 });
+          new kakao.maps.Marker({ position: center, map: map });
+        });
+      } catch (e) {}
+    };
+    document.head.appendChild(script);
+  }
   function initKakao() {
     try {
       if (window.Kakao && KAKAO_JS_KEY && KAKAO_JS_KEY.charAt(0) !== "[" && !window.Kakao.isInitialized()) {
@@ -358,6 +450,8 @@
     initCountdown();
     initRain();
     initBooking();
+    initInquiry();
+    initKakaoMap();
     initKakao();
     initShare();
   }
