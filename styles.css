@@ -730,7 +730,7 @@ p { text-wrap: pretty; }
 .guests__intro { text-align: center; color: var(--ink-soft); font-size: var(--step-0); margin: -0.5rem auto 2rem; }
 .guests__intro-logo { display: inline-block; height: 1.4em; width: auto; vertical-align: -0.35em; margin-right: 0.15em; }
 .guests__grid {
-  list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  list-style: none; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: clamp(1.2rem, 3vw, 2.2rem); max-width: 860px; margin-inline: auto;
 }
 .guest { text-align: center; }
