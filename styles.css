@@ -39,14 +39,14 @@
   --r-lg: 22px;
   --r-pill: 999px;
 
-  /* Fluid type scale (~1.25) */
-  --step--1: clamp(0.82rem, 0.79rem + 0.15vw, 0.9rem);
-  --step-0:  clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
-  --step-1:  clamp(1.2rem, 1.12rem + 0.4vw, 1.5rem);
-  --step-2:  clamp(1.5rem, 1.35rem + 0.75vw, 2.1rem);
-  --step-3:  clamp(1.9rem, 1.6rem + 1.5vw, 3rem);
-  --step-4:  clamp(2.4rem, 1.9rem + 2.6vw, 4.2rem);
-  --hero:    clamp(3.4rem, 2.2rem + 6vw, 6rem);
+  /* Fluid type scale (~1.25) — 50대 이상 가독성을 고려해 기존 대비 약 15% 확대 */
+  --step--1: clamp(0.94rem, 0.9rem + 0.17vw, 1.03rem);
+  --step-0:  clamp(1.15rem, 1.1rem + 0.23vw, 1.29rem);
+  --step-1:  clamp(1.38rem, 1.29rem + 0.46vw, 1.73rem);
+  --step-2:  clamp(1.73rem, 1.55rem + 0.86vw, 2.42rem);
+  --step-3:  clamp(2.19rem, 1.84rem + 1.73vw, 3.45rem);
+  --step-4:  clamp(2.76rem, 2.19rem + 3vw, 4.83rem);
+  --hero:    clamp(3.91rem, 2.53rem + 6.9vw, 6.9rem);
 
   /* Type family — 전체 고딕체 통일 */
   --font: "Gothic A1", "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", system-ui, -apple-system, sans-serif;
@@ -921,10 +921,9 @@ p { text-wrap: pretty; }
   .mobilecta__actions .btn:first-child { flex: 1; }
 }
 
-/* ---------- PC: 예매바 폭을 본문 컨테이너와 맞추고, 버튼을 중앙 정렬 ---------- */
+/* ---------- PC: 예매바는 화면 100% 폭, 버튼은 다시 중앙 정렬 ---------- */
 @media (min-width: 900px) {
   .mobilecta {
-    max-width: var(--maxw); margin-inline: auto;
     display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
   }
   .mobilecta__info { grid-column: 1; }
