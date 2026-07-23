@@ -187,6 +187,15 @@
     });
   }
 
+  /* ================= 예스24 모바일 링크 전환 ================= */
+  function initVendorLinks() {
+    var link = document.querySelector("[data-yes24-link]");
+    if (!link) return;
+    if (window.matchMedia("(max-width: 760px)").matches) {
+      link.href = "https://m.ticket.yes24.com/perf/detail/perfinfo.aspx?idperf=59036";
+    }
+  }
+
   /* ================= 예매 모달 ================= */
   function initBooking() {
     var modal = document.getElementById("bookModal");
@@ -449,6 +458,7 @@
     initCountdown();
     initRain();
     initBooking();
+    initVendorLinks();
     initInquiry();
     initKakaoMap();
     initKakao();
