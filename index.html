@@ -99,9 +99,9 @@
     <section class="section band" id="guests">
       <div class="container">
         <div class="section__head" data-reveal>
-          <p class="eyebrow">게스트</p>
+          <p class="eyebrow"><svg class="eyebrow__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 21v-1.5a7 7 0 0 1 14 0V21"/></svg>게스트</p>
         </div>
-        <p class="guests__intro" data-reveal>미스트롯4 왕년부가 특별 게스트로 함께합니다.</p>
+        <p class="guests__intro" data-reveal><img class="guests__intro-logo" src="assets/misstrot4-logo.png" alt="미스트롯4" /> 왕년부가 특별 게스트로 함께합니다.</p>
         <ul class="guests__grid" data-reveal-stagger>
           <li class="guest">
             <div class="guest__photo" style="background-image:url(assets/guest-anjina.png)" role="img" aria-label="안진아"></div>
@@ -111,7 +111,7 @@
           <li class="guest">
             <div class="guest__photo" style="background-image:url(assets/guest-yumi.png)" role="img" aria-label="유미"></div>
             <p class="guest__name">유미</p>
-            <p class="guest__desc">사랑은 언제나 목마르다</p>
+            <p class="guest__desc">사랑은 언제나<span class="guest__desc-break"> 목마르다</span></p>
           </li>
           <li class="guest">
             <div class="guest__photo" style="background-image:url(assets/guest-goeunbyeol.png)" role="img" aria-label="고은별"></div>
@@ -131,7 +131,7 @@
     <section class="section" id="tickets">
       <div class="container">
         <div class="section__head" data-reveal>
-          <p class="eyebrow">좌석안내</p>
+          <p class="eyebrow"><svg class="eyebrow__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-4Z"/><path d="M10 6v1.5M10 11.25v1.5M10 16.5V18" stroke-dasharray="1.5 2"/></svg>좌석안내</p>
         </div>
 
         <figure class="seatmap" data-reveal>
@@ -214,7 +214,7 @@
     <section class="section band" id="location">
       <div class="container">
         <div class="section__head" data-reveal>
-          <p class="eyebrow">오시는 길</p>
+          <p class="eyebrow"><svg class="eyebrow__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>오시는 길</p>
         </div>
 
         <div class="location__grid">
@@ -222,7 +222,10 @@
             <div id="kakaoMap" class="map__frame" role="img" aria-label="공연장 위치 지도 (영남대학교 천마아트센터 그랜드홀)">
               <div class="map__note">지도 준비 중입니다.<br>아래 버튼으로 길찾기를 이용해 주세요.</div>
             </div>
-            <a class="map__open" href="https://map.kakao.com/link/search/영남대학교 천마아트센터 그랜드홀" target="_blank" rel="noopener noreferrer">카카오맵에서 열기 <span aria-hidden="true">↗</span></a>
+            <a class="map__open" href="https://map.kakao.com/link/search/영남대학교 천마아트센터 그랜드홀" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+              카카오맵에서 열기 <span aria-hidden="true">↗</span>
+            </a>
           </div>
 
           <div class="location__info">
@@ -247,7 +250,7 @@
     <section class="section" id="notice">
       <div class="container">
         <div class="section__head" data-reveal>
-          <p class="eyebrow">관람 안내</p>
+          <p class="eyebrow"><svg class="eyebrow__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><circle cx="12" cy="7.7" r="0.6" fill="currentColor" stroke="none"/></svg>관람 안내</p>
         </div>
 
         <div class="faq" data-reveal>
@@ -309,15 +312,15 @@
     </div>
     <div class="mobilecta__actions">
       <button class="btn" type="button" data-book-open>온라인예매</button>
-      <button class="btn btn--ghost mobilecta__icon mobilecta__inquiry" type="button" data-inquiry-open aria-label="문의하기">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg>
-        <span class="cta-text-pc">문의</span>
-      </button>
       <a class="btn btn--ghost mobilecta__icon mobilecta__tel" href="tel:02-2060-8186" aria-label="전화예매 02-2060-8186">
         <svg class="tel-label" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.15.38 2.36.58 3.6.58a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.3a1 1 0 0 1 1 1c0 1.25.2 2.46.58 3.6a1 1 0 0 1-.25 1Z"/></svg>
         <span class="cta-text-pc">전화예매</span>
         <span class="tel-num">02-2060-8186</span>
       </a>
+      <button class="btn btn--ghost mobilecta__icon mobilecta__inquiry" type="button" data-inquiry-open aria-label="문의하기">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg>
+        <span class="cta-text-pc">문의</span>
+      </button>
       <button class="btn btn--ghost mobilecta__icon mobilecta__share" type="button" data-share aria-label="공유하기">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
         <span class="cta-text-pc">공유</span>
@@ -337,10 +340,10 @@
       <p class="modal__sub">슈퍼디바 적우 콘서트 - 대구 · 2026.08.22 (토) 오후 4시</p>
       <div class="modal__vendors">
         <a class="vendor vendor--lg" href="https://nol.yanolja.com/ticket/products/26009214" target="_blank" rel="noopener noreferrer">
-          <span>NOL 티켓</span><span class="vendor__arrow" aria-hidden="true">↗</span>
+          <img class="vendor__logo" src="assets/vendor-nol.png" alt="NOL 티켓" /><span class="vendor__arrow" aria-hidden="true">↗</span>
         </a>
         <a class="vendor vendor--lg" href="http://ticket.yes24.com/Pages/Perf/Detail/Detail.aspx?IdPerf=59036" target="_blank" rel="noopener noreferrer">
-          <span>예스24 티켓</span><span class="vendor__arrow" aria-hidden="true">↗</span>
+          <img class="vendor__logo" src="assets/vendor-yes24.png" alt="예스24 티켓" /><span class="vendor__arrow" aria-hidden="true">↗</span>
         </a>
       </div>
     </div>

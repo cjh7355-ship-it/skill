@@ -223,8 +223,9 @@
   }
 
   /* ================= 문의(전화상담 요청) ================= */
-  /* 구글시트 연동: 시트에서 확장 프로그램 > Apps Script로 doPost 웹앱을 배포하고, 그 /exec URL로 교체 */
-  var INQUIRY_SHEET_WEBAPP_URL = "[GOOGLE_SHEET_WEBAPP_URL]";
+  /* 구글폼 연동 — 폼 응답이 연결된 구글시트에 그대로 쌓임(OAuth 승인 불필요) */
+  var INQUIRY_FORM_ACTION_URL = "https://docs.google.com/forms/d/e/1FAIpQLSeEDa6ecrtdW8dOrnqYmlr_w8ejoHvbdc8Aq7HKGEVTNC39uQ/formResponse";
+  var INQUIRY_FORM_PHONE_ENTRY = "entry.1934712052";
   function initInquiry() {
     var modal = document.getElementById("inquiryModal");
     if (!modal) return;
@@ -263,7 +264,7 @@
         e.preventDefault();
         var phone = (phoneInput.value || "").trim();
         if (!phone) return;
-        if (!INQUIRY_SHEET_WEBAPP_URL || INQUIRY_SHEET_WEBAPP_URL.charAt(0) === "[") {
+        if (!INQUIRY_FORM_ACTION_URL || INQUIRY_FORM_ACTION_URL.charAt(0) === "[") {
           status.textContent = "연동 준비 중입니다. 관리자에게 문의해 주세요.";
           status.className = "inquiry__status is-error";
           return;
@@ -273,10 +274,8 @@
         status.textContent = "전송 중...";
         status.className = "inquiry__status";
         var body = new URLSearchParams();
-        body.append("phone", phone);
-        body.append("page", "슈퍼디바 적우 콘서트 - 대구");
-        body.append("time", new Date().toISOString());
-        fetch(INQUIRY_SHEET_WEBAPP_URL, { method: "POST", mode: "no-cors", body: body })
+        body.append(INQUIRY_FORM_PHONE_ENTRY, phone);
+        fetch(INQUIRY_FORM_ACTION_URL, { method: "POST", mode: "no-cors", body: body })
           .then(function () {
             status.textContent = "접수되었습니다. 순차적으로 연락드리겠습니다.";
             status.className = "inquiry__status is-ok";
