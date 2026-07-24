@@ -290,6 +290,7 @@
             status.className = "inquiry__status is-ok";
             form.reset();
             aceHit("#/conv/inquiry");
+            karrotHit("Lead");
           })
           .catch(function () {
             status.textContent = "전송에 실패했습니다. 잠시 후 다시 시도해 주세요.";
@@ -475,16 +476,24 @@
     } catch (e) {}
   }
 
+  /* 당근마켓 광고(카롯 픽셀) 전환추적 — 전화연결/공유/예매링크/문의 4종 */
+  function karrotHit(eventName) {
+    try {
+      if (window.karrotPixel) window.karrotPixel.track(eventName);
+    } catch (e) {}
+  }
+
   function initAceConversions() {
     document.addEventListener("click", function (e) {
       var tel = e.target.closest('a[href^="tel:"]');
-      if (tel) { aceHit("#/conv/tel"); return; }
+      if (tel) { aceHit("#/conv/tel"); karrotHit("Contact"); return; }
       var ch = e.target.closest("[data-share-channel]");
-      if (ch) { aceHit("#/conv/share/" + ch.getAttribute("data-share-channel")); return; }
+      if (ch) { aceHit("#/conv/share/" + ch.getAttribute("data-share-channel")); karrotHit("Share"); return; }
       var vendor = e.target.closest(".vendor--lg");
       if (vendor) {
         var name = /nol\.yanolja/.test(vendor.href) ? "nol" : /yes24/.test(vendor.href) ? "yes24" : "etc";
         aceHit("#/conv/book/" + name);
+        karrotHit("Purchase");
       }
     });
   }
