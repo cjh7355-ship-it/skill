@@ -289,6 +289,7 @@
             status.textContent = "접수되었습니다. 순차적으로 연락드리겠습니다.";
             status.className = "inquiry__status is-ok";
             form.reset();
+            aceHit("#/conv/inquiry");
           })
           .catch(function () {
             status.textContent = "전송에 실패했습니다. 잠시 후 다시 시도해 주세요.";
@@ -450,6 +451,44 @@
     });
   }
 
+  /* ================= AceCounter 전환추적 =================
+     공통스크립트(ac.js)는 페이지 진입 시 1회만 수집한다. 페이지 이동이 없는
+     액션(전화연결/공유/예매링크)을 전환으로 잡기 위해, 클릭 시 location.hash를
+     구분되는 가상 경로로 바꾸고 수집스크립트를 다시 삽입해 가상 페이지뷰를 만든다.
+     이후 에이스카운터 관리자 페이지 [설정 > 페이지 > 전환페이지]에서 아래 경로를
+     전환페이지로 등록하면 전환 리포트에 집계된다.
+       #/conv/tel        전화연결
+       #/conv/share/*    공유 (채널별: kakao/band/facebook/x/line/copy)
+       #/conv/book/*     예매링크 (nol/yes24)
+       #/conv/inquiry    문의(전화번호 남기기) 접수완료 */
+  function aceHit(vpath) {
+    try {
+      if (location.hash !== vpath) history.replaceState(null, "", vpath);
+      var G = window._AceGID;
+      if (!G || !G.val || G.o === 0) return;
+      var A = G.val[G.o - 1];
+      var U = (A[4]).replace(/,/g, "_");
+      var s = document.createElement("script");
+      s.src = "https://cr.acecounter.com/ac.js?gc=" + A[2] + "&py=" + A[1] + "&up=" + U + "&rd=" + new Date().getTime();
+      var ref = document.getElementsByTagName("script")[0];
+      ref.parentNode.insertBefore(s, ref);
+    } catch (e) {}
+  }
+
+  function initAceConversions() {
+    document.addEventListener("click", function (e) {
+      var tel = e.target.closest('a[href^="tel:"]');
+      if (tel) { aceHit("#/conv/tel"); return; }
+      var ch = e.target.closest("[data-share-channel]");
+      if (ch) { aceHit("#/conv/share/" + ch.getAttribute("data-share-channel")); return; }
+      var vendor = e.target.closest(".vendor--lg");
+      if (vendor) {
+        var name = /nol\.yanolja/.test(vendor.href) ? "nol" : /yes24/.test(vendor.href) ? "yes24" : "etc";
+        aceHit("#/conv/book/" + name);
+      }
+    });
+  }
+
   /* ================= Boot ================= */
   function boot() {
     initHero();
@@ -463,6 +502,7 @@
     initKakaoMap();
     initKakao();
     initShare();
+    initAceConversions();
   }
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", boot);

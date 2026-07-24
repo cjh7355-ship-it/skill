@@ -1039,6 +1039,12 @@ p { text-wrap: pretty; }
 /* 최상단 여백 축소 + 히어로를 위에서부터 정렬 */
 .hero { align-items: start; padding-top: clamp(3.6rem, 2.8rem + 1.6vw, 4.6rem); }
 
+/* 히어로 가격 라인 삭제로 콘텐츠가 짧아져 min-height:100svh가 하단에 빈 공간을 남기던 것 → 모바일은 콘텐츠 높이에 맞춤 */
+@media (max-width: 900px) {
+  .hero { min-height: 0; padding-bottom: clamp(2.5rem, 6vw, 4rem); }
+  .hero__scroll { display: none; }
+}
+
 /* 내비/섹션 헤드/FAQ 중앙 정렬 → 좌우 대칭 */
 .nav { justify-content: center; }
 .section__head { margin-inline: auto; text-align: center; }
