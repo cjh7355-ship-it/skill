@@ -483,6 +483,14 @@
     } catch (e) {}
   }
 
+  /* 카카오 픽셀 구매 전환 — 예매링크 클릭 시 */
+  var KAKAO_PIXEL_ID = "1384481355008199841";
+  function kakaoPixelPurchase() {
+    try {
+      if (window.kakaoPixel) window.kakaoPixel(KAKAO_PIXEL_ID).purchase();
+    } catch (e) {}
+  }
+
   function initAceConversions() {
     document.addEventListener("click", function (e) {
       var tel = e.target.closest('a[href^="tel:"]');
@@ -494,6 +502,7 @@
         var name = /nol\.yanolja/.test(vendor.href) ? "nol" : /yes24/.test(vendor.href) ? "yes24" : "etc";
         aceHit("#/conv/book/" + name);
         karrotHit("Purchase");
+        kakaoPixelPurchase();
       }
     });
   }
