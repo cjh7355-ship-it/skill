@@ -491,10 +491,29 @@
     } catch (e) {}
   }
 
+  /* 네이버 프리미엄로그분석 구매전환 — 온라인예매(예매링크)/전화연결 클릭 시
+     seat 등급이 확정되지 않은 클릭 시점이라 대표값(A석 121,000원)으로 집계한다.
+     실제 결제금액 연동이 필요하면 이 값을 조정할 것. */
+  var NAVER_WA_ID = "s_53d5fbe62015";
+  var NAVER_REP_AMOUNT = "121000";
+  function naverPurchase(convId, label) {
+    try {
+      if (!window.wcs) return;
+      if (!window.wcs_add) window.wcs_add = {};
+      wcs_add["wa"] = NAVER_WA_ID;
+      var _conv = {};
+      _conv.type = "purchase";
+      _conv.value = NAVER_REP_AMOUNT;
+      _conv.id = convId;
+      _conv.items = [{ id: label, name: "슈퍼디바 적우 콘서트 - 대구", payAmount: NAVER_REP_AMOUNT }];
+      wcs.trans(_conv);
+    } catch (e) {}
+  }
+
   function initAceConversions() {
     document.addEventListener("click", function (e) {
       var tel = e.target.closest('a[href^="tel:"]');
-      if (tel) { aceHit("#/conv/tel"); karrotHit("Contact"); return; }
+      if (tel) { aceHit("#/conv/tel"); karrotHit("Contact"); naverPurchase("tel-" + Date.now(), "tel"); return; }
       var ch = e.target.closest("[data-share-channel]");
       if (ch) { aceHit("#/conv/share/" + ch.getAttribute("data-share-channel")); karrotHit("Share"); return; }
       var vendor = e.target.closest(".vendor--lg");
@@ -503,6 +522,7 @@
         aceHit("#/conv/book/" + name);
         karrotHit("Purchase");
         kakaoPixelPurchase();
+        naverPurchase(name + "-" + Date.now(), name);
       }
     });
   }
