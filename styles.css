@@ -827,24 +827,6 @@ p { text-wrap: pretty; }
   .modal, .modal__dialog { transition: none; }
 }
 
-/* ---------- 문의 폼 ---------- */
-.inquiry__form { display: flex; gap: 0.6rem; }
-.inquiry__input {
-  flex: 1; min-width: 0; padding: 0.9em 1.1em; border-radius: var(--r-pill);
-  border: 1px solid var(--line-strong); background: transparent;
-  color: var(--ink); font-size: var(--step-0); font-family: var(--font);
-}
-.inquiry__input::placeholder { color: var(--ink-muted); }
-.inquiry__input:focus { outline: none; border-color: var(--gold); }
-.inquiry__submit { flex: none; padding-inline: 1.3em; }
-.inquiry__status { margin-top: 0.8rem; font-size: var(--step--1); color: var(--ink-muted); min-height: 1.3em; }
-.inquiry__status.is-error { color: oklch(0.62 0.2 25); }
-.inquiry__status.is-ok { color: var(--gold-bright, var(--gold)); }
-@media (max-width: 420px) {
-  .inquiry__form { flex-direction: column; }
-  .inquiry__submit { width: 100%; }
-}
-
 /* ---------- Seat map ---------- */
 .seatmap { max-width: 860px; margin: 0 auto clamp(1.5rem, 3vw, 2.4rem); border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; background: var(--bg-deep); }
 @media (max-width: 640px) {
@@ -1029,8 +1011,7 @@ p { text-wrap: pretty; }
   .tel-num { display: inline; }
   .cta-text-pc { display: inline; }
   .mobilecta__tel.mobilecta__icon,
-  .mobilecta__share.mobilecta__icon,
-  .mobilecta__inquiry.mobilecta__icon { width: auto; min-width: 0; padding: 0 1.05em; gap: 0.4em; }
+  .mobilecta__share.mobilecta__icon { width: auto; min-width: 0; padding: 0 1.05em; gap: 0.4em; }
 }
 
 /* ============================================================

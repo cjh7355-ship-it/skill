@@ -231,78 +231,6 @@
     });
   }
 
-  /* ================= 문의(전화상담 요청) ================= */
-  /* 구글폼 연동 — 폼 응답이 연결된 구글시트에 그대로 쌓임(OAuth 승인 불필요) */
-  var INQUIRY_FORM_ACTION_URL = "https://docs.google.com/forms/d/e/1FAIpQLSeEDa6ecrtdW8dOrnqYmlr_w8ejoHvbdc8Aq7HKGEVTNC39uQ/formResponse";
-  var INQUIRY_FORM_PHONE_ENTRY = "entry.1934712052";
-  function initInquiry() {
-    var modal = document.getElementById("inquiryModal");
-    if (!modal) return;
-    var form = document.getElementById("inquiryForm");
-    var phoneInput = document.getElementById("inquiryPhone");
-    var status = document.getElementById("inquiryStatus");
-    var lastFocus = null;
-    function open() {
-      lastFocus = document.activeElement;
-      if (status) { status.textContent = ""; status.className = "inquiry__status"; }
-      modal.hidden = false;
-      requestAnimationFrame(function () { modal.classList.add("is-open"); });
-      document.body.style.overflow = "hidden";
-      if (phoneInput) phoneInput.focus();
-    }
-    function close() {
-      modal.classList.remove("is-open");
-      document.body.style.overflow = "";
-      var done = function () {
-        modal.hidden = true;
-        modal.removeEventListener("transitionend", done);
-      };
-      modal.addEventListener("transitionend", done);
-      setTimeout(function () { if (!modal.classList.contains("is-open")) modal.hidden = true; }, 400);
-      if (lastFocus && lastFocus.focus) lastFocus.focus();
-    }
-    document.addEventListener("click", function (e) {
-      if (e.target.closest("[data-inquiry-open]")) { e.preventDefault(); open(); }
-      else if (e.target.closest("[data-inquiry-close]")) { e.preventDefault(); close(); }
-    });
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && !modal.hidden) close();
-    });
-    if (form) {
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        var phone = (phoneInput.value || "").trim();
-        if (!phone) return;
-        if (!INQUIRY_FORM_ACTION_URL || INQUIRY_FORM_ACTION_URL.charAt(0) === "[") {
-          status.textContent = "연동 준비 중입니다. 관리자에게 문의해 주세요.";
-          status.className = "inquiry__status is-error";
-          return;
-        }
-        var submitBtn = form.querySelector(".inquiry__submit");
-        if (submitBtn) submitBtn.disabled = true;
-        status.textContent = "전송 중...";
-        status.className = "inquiry__status";
-        var body = new URLSearchParams();
-        body.append(INQUIRY_FORM_PHONE_ENTRY, phone);
-        fetch(INQUIRY_FORM_ACTION_URL, { method: "POST", mode: "no-cors", body: body })
-          .then(function () {
-            status.textContent = "접수되었습니다. 순차적으로 연락드리겠습니다.";
-            status.className = "inquiry__status is-ok";
-            form.reset();
-            aceHit("#/conv/inquiry");
-            karrotHit("Lead");
-          })
-          .catch(function () {
-            status.textContent = "전송에 실패했습니다. 잠시 후 다시 시도해 주세요.";
-            status.className = "inquiry__status is-error";
-          })
-          .finally(function () {
-            if (submitBtn) submitBtn.disabled = false;
-          });
-      });
-    }
-  }
-
   /* ================= Toast ================= */
   function toast(msg) {
     var t = document.createElement("div");
@@ -460,8 +388,7 @@
      전환페이지로 등록하면 전환 리포트에 집계된다.
        #/conv/tel        전화연결
        #/conv/share/*    공유 (채널별: kakao/band/facebook/x/line/copy)
-       #/conv/book/*     예매링크 (nol/yes24)
-       #/conv/inquiry    문의(전화번호 남기기) 접수완료 */
+       #/conv/book/*     예매링크 (nol/yes24) */
   function aceHit(vpath) {
     try {
       if (location.hash !== vpath) history.replaceState(null, "", vpath);
@@ -544,7 +471,6 @@
     initRain();
     initBooking();
     initVendorLinks();
-    initInquiry();
     initKakaoMap();
     initKakao();
     initShare();
