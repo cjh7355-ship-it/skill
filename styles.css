@@ -1027,8 +1027,15 @@ p { text-wrap: pretty; }
 .cta-text-pc { display: inline; }
 .tel-num { display: none; }
 .mobilecta__tel.mobilecta__icon { width: auto; min-width: 0; padding: 0 1.05em; gap: 0.4em; }
+
+/* 공유 버튼: PC에서는 전화문의 옆 인라인 버튼, 모바일에서는 하단 플로팅 버튼만 노출 */
+.cta-share--pc { display: none; }
+.cta-share--pc svg { width: 1.05em; height: 1.05em; flex: none; }
+.floatshare { display: grid; }
 @media (min-width: 761px) {
   .tel-num { display: inline; }
+  .cta-share--pc { display: inline-flex; }
+  .floatshare { display: none; }
 }
 
 /* ============================================================
