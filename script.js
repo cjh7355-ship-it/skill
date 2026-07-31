@@ -510,10 +510,17 @@
     } catch (e) {}
   }
 
+  /* 데이블(Dable) 전환추적 — 온라인예매/전화연결 시 */
+  function dableConversion() {
+    try {
+      if (window.dablena) window.dablena("track", "CompleteRegistration");
+    } catch (e) {}
+  }
+
   function initAceConversions() {
     document.addEventListener("click", function (e) {
       var tel = e.target.closest('a[href^="tel:"]');
-      if (tel) { aceHit("#/conv/tel"); karrotHit("Contact"); naverPurchase("tel-" + Date.now(), "tel"); return; }
+      if (tel) { aceHit("#/conv/tel"); karrotHit("Contact"); naverPurchase("tel-" + Date.now(), "tel"); dableConversion(); return; }
       var ch = e.target.closest("[data-share-channel]");
       if (ch) { aceHit("#/conv/share/" + ch.getAttribute("data-share-channel")); karrotHit("Share"); return; }
       var vendor = e.target.closest(".vendor--lg");
@@ -523,6 +530,7 @@
         karrotHit("Purchase");
         kakaoPixelPurchase();
         naverPurchase(name + "-" + Date.now(), name);
+        dableConversion();
       }
     });
   }
