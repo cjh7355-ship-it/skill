@@ -462,6 +462,19 @@
     });
   }
 
+  /* ================= 하단 고정바 표시/숨김 =================
+     히어로의 온라인예매/전화문의 버튼(#heroCta)이 화면 밖으로 나가면 하단 고정바가 슬라이드업된다. */
+  function initStickyCta() {
+    var heroCta = document.getElementById("heroCta");
+    var bar = document.querySelector(".mobilecta");
+    if (!heroCta || !bar) return;
+    if (!("IntersectionObserver" in window)) { bar.classList.add("is-visible"); return; }
+    var io = new IntersectionObserver(function (entries) {
+      bar.classList.toggle("is-visible", !entries[0].isIntersecting);
+    }, { threshold: 0 });
+    io.observe(heroCta);
+  }
+
   /* ================= Boot ================= */
   function boot() {
     initHero();
@@ -475,6 +488,7 @@
     initKakao();
     initShare();
     initAceConversions();
+    initStickyCta();
   }
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", boot);

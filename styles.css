@@ -658,7 +658,7 @@ p { text-wrap: pretty; }
 .footer__social svg { width: 18px; height: 18px; }
 .footer__note { margin-top: 1.5rem; color: var(--ink-muted); font-size: 0.78rem; opacity: 0.8; }
 
-/* ---------- Sticky booking bar (always fixed, all viewports) ---------- */
+/* ---------- Sticky booking bar (히어로 CTA가 화면 밖으로 나가면 하단에서 슬라이드업) ---------- */
 .mobilecta {
   position: fixed; inset: auto 0 0 0; z-index: var(--z-mobilecta);
   display: flex;
@@ -667,7 +667,11 @@ p { text-wrap: pretty; }
   backdrop-filter: blur(14px);
   border-top: 1px solid var(--line);
   gap: 0.8rem; align-items: center; justify-content: space-between;
+  transform: translateY(130%);
+  transition: transform var(--dur-1) var(--ease-out-quint);
 }
+.mobilecta.is-visible { transform: none; }
+@media (prefers-reduced-motion: reduce) { .mobilecta { transition: none; } }
 .mobilecta__info { display: grid; gap: 0.1rem; }
 .mobilecta__info b { color: var(--ink); font-size: var(--step-0); font-family: var(--font); }
 .mobilecta__info span { color: var(--ink-muted); font-size: 0.72rem; }
