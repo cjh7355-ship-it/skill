@@ -158,6 +158,7 @@ p { text-wrap: pretty; }
   font-weight: 800;
   font-size: var(--step-0);
   letter-spacing: -0.01em;
+  white-space: nowrap;
   background: var(--_bg);
   color: var(--on-gold);
   transition: transform var(--dur-1) var(--ease-out-quint),
